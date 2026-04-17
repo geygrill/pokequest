@@ -1,0 +1,29 @@
+import './Navigation.css'
+import {Link} from 'react-router-dom';
+
+function Navigation() {
+    return (
+            <nav className="main-navigation outer-content-container">
+                <div className="inner-nav-container">
+
+                    <Link to="/" className="navbar-logo">
+                        <span className="pokeball-icon" aria-hidden="true"></span>
+                        PokéQuest
+                    </Link>
+
+                    <ul className="main-navigation-links">
+                        <li><Link to="/search">Pokédex</Link></li>
+                        <li><Link to="/quiz">Quiz</Link></li>
+                        <li><Link to="/team">Mijn Team</Link></li>
+
+                        <div className="navbar-auth">
+                            <li><Link to="/login" className="btn-login">Inloggen</Link></li>
+                            <li><Link to="/register" className="btn-register">Registreren</Link></li>
+                        </div>
+                    </ul>
+                </div>
+            </nav>
+    )
+}
+
+export default Navigation;

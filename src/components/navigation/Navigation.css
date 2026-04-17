@@ -1,5 +1,5 @@
 .inner-nav-container {
-    flex-basis: 1200px;
+    flex-basis: 1400px;
     flex-shrink: 1;
     flex-grow: 0;
     margin: 0 1.5rem;
@@ -34,6 +34,27 @@
     align-items: center;
     gap: 0.6rem;
     letter-spacing: -0.5px;
+}
+
+.main-navigation-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.main-navigation-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+}
+
+.main-navigation-links a:hover {
+    opacity: 1;
 }
 
 /* =========================
@@ -73,8 +94,8 @@
 .pokeball-icon::after {
     content: '';
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
     background: var(--white);
     border-radius: 50%;
     border: 3px solid rgba(0, 0, 0, 1);

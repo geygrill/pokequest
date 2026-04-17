@@ -18,3 +18,16 @@ body {
 img {
     width: 100%;
 }
+
+:root {
+    --red: #CC0000;
+    --dark-red: #9B0000;
+    --yellow: #FFCB05;
+    --dark: #1a1a2e;
+    --grey: #6b7280;
+    --light-grey: #f3f4f6;
+    --white: #ffffff;
+    --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-large: 0 8px 24px rgba(0, 0, 0, 0.18);
+}

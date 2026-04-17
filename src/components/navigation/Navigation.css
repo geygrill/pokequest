@@ -50,11 +50,35 @@
     text-decoration: none;
     font-weight: 500;
     opacity: 0.9;
-    transition: opacity 0.2s;
+    transition: all 0.2s;
 }
 
 .main-navigation-links a:hover {
     opacity: 1;
+}
+
+.btn-login {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 0.35rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+}
+
+.btn-login:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-register {
+    background: var(--yellow);
+    color: var(--dark);
+    padding: 0.35rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.btn-register:hover {
+    background: #e6b800;
 }
 
 /* =========================

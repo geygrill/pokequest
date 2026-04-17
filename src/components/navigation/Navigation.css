@@ -94,8 +94,8 @@
 .pokeball-icon::after {
     content: '';
     position: absolute;
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     background: var(--white);
     border-radius: 50%;
     border: 3px solid rgba(0, 0, 0, 1);

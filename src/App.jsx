@@ -7,21 +7,26 @@ import Register from "./pages/registerPage/Register.jsx";
 import Quiz from "./pages/quizPage/Quiz.jsx";
 import Team from "./pages/teamPage/Team.jsx";
 import NotFound from "./pages/notFoundPage/NotFound.jsx";
+import Navigation from "./components/navigation/Navigation.jsx";
 
 
 function App() {
 
   return (
     <>
-        <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/pokedex" element={<Pokedex/>}/>
-            <Route path="/register" element={<Register/>}/>
-            <Route path="/quiz" element={<Quiz/>}/>
-            <Route path="/team" element={<Team/>}/>
-            <Route path="*" element={<NotFound/>}/>
-        </Routes>
+        <Navigation />
+        <main>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/pokedex" element={<Pokedex/>}/>
+                <Route path="/register" element={<Register/>}/>
+                <Route path="/quiz" element={<Quiz/>}/>
+                <Route path="/team" element={<Team/>}/>
+                <Route path="*" element={<NotFound/>}/>
+            </Routes>
+        </main>
+
     </>
   )
 }

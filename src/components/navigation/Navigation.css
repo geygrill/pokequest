@@ -40,9 +40,10 @@
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    flex-basis: 440px;
     margin: 0;
     padding: 0;
+    justify-content: space-between;
 }
 
 .main-navigation-links a {

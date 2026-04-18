@@ -22,7 +22,8 @@
 .navbar-auth {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    flex-basis: 200px;
+    justify-content: space-between;
 }
 
 .navbar-logo {
@@ -40,9 +41,10 @@
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    flex-basis: 440px;
     margin: 0;
     padding: 0;
+    justify-content: space-between;
 }
 
 .main-navigation-links a {
@@ -59,7 +61,7 @@
 
 .btn-login {
     border: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 0.35rem 0.9rem;
+    padding: 0.4rem 0.9rem;
     border-radius: 6px;
     font-size: 0.875rem;
 }
@@ -71,7 +73,7 @@
 .btn-register {
     background: var(--yellow);
     color: var(--dark);
-    padding: 0.35rem 0.9rem;
+    padding: 0.4rem 0.9rem;
     border-radius: 6px;
     font-size: 0.875rem;
     font-weight: 700;
@@ -90,16 +92,8 @@
     height: 32px;
     border-radius: 50%;
     position: relative;
-    display: inline-block;
-    overflow: hidden;
-
-    background: linear-gradient(
-            to bottom,
-            #e53935 50%,
-            #ffffff 50%
-    );
-
-    box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 1);
+    background: linear-gradient(to bottom, #e53935 50%, white 50%);
+    border: 3px solid rgba(0, 0, 0, 1);
 }
 
 /* middle line */

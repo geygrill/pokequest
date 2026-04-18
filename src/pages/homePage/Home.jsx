@@ -27,21 +27,21 @@ function Home() {
                     <h2 className="feature-title">Wat kun je doen?</h2>
                     <div className="feature-cards">
                         <div className="feature-card">
-                            <div className="feature-icon">❓</div>
+                            <div className="feature-icon"></div>
                             <h3>Wie is deze Pokémon?!</h3>
                             <p>Zie een silhouet en raad welke Pokémon het is. Raad je het goed? Dan vang je hem en kun je hem toevoegen aan je team!</p>
                             <Link to="/quiz" className="feature-link">Speel nu →</Link>
                         </div>
 
                         <div className="feature-card">
-                            <div className="feature-icon">📖</div>
+                            <div className="feature-icon"></div>
                             <h3>Mijn Pokédex</h3>
                             <p>Bekijk alle Pokémon die je ooit goed hebt geraden. Filter op naam en beheer wie er in je team zit.</p>
                             <Link to="/search" className="feature-link">Open Pokédex →</Link>
                         </div>
 
                         <div className="feature-card">
-                            <div className="feature-icon">⚡</div>
+                            <div className="feature-icon"></div>
                             <h3>Mijn Team</h3>
                             <p>Bouw je eigen team van maximaal 6 Pokémon. Wissel, verwijder en stel de perfecte lineup samen!</p>
                             <Link to="/team" className="feature-link">Mijn team →</Link>

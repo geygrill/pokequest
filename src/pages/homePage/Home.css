@@ -78,6 +78,20 @@
    FEATURE SECTION
 ========================= */
 
+.pokeball-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.pokeball-large {
+    top: -16px;
+    transform: scale(2.5); /* 32px → ~80px */
+}
+
+/* =========================
+   FEATURE SECTION
+========================= */
+
 .feature-title {
     font-size: 1.75rem;
     font-weight: 800;

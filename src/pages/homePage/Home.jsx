@@ -18,6 +18,10 @@ function Home() {
                 </div>
             </header>
 
+            <div className="pokeball-wrapper" aria-hidden="true">
+                <div className="pokeball-icon pokeball-large"></div>
+            </div>
+
             <section className="outer-content-container">
                 <div className="inner-content-container">
                     <h2 className="feature-title">Wat kun je doen?</h2>

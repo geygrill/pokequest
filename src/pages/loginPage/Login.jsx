@@ -17,7 +17,7 @@ function Login() {
                     'novi-education-project-id': '15434519-3993-48e6-93d6-56bf22754409',
                 }
             });
-            console.log(response.data);
+            login(response.data);
         } catch(error){
             console.error(error);
         }

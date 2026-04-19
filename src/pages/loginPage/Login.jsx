@@ -28,12 +28,12 @@ function Login() {
 
     return (
         <>
-            <div className="outer-content-container">
+            <div className="outer-content-container login-page">
                 <div className="login-card">
                     <div className="pokeball-icon" aria-hidden="true"></div>
                     <h1>Inloggen</h1>
 
-                    <form onSubmit={handleSubmit(handleFormSubmit)}>
+                    <form onSubmit={handleSubmit(handleFormSubmit)} noValidate>
                         <div className="form-group">
                             <label htmlFor="email">E-mailadres</label>
                             <input

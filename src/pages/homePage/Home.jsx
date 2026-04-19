@@ -2,6 +2,7 @@ import './Home.css'
 import {Link} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import {useContext} from "react";
+import Pokeball from "../../components/pokeball/Pokeball.jsx";
 
 function Home() {
     const { isAuth } = useContext(AuthContext);
@@ -32,7 +33,7 @@ function Home() {
             </header>
 
             <div className="pokeball-wrapper" aria-hidden="true">
-                <div className="pokeball-icon pokeball-large"></div>
+                <Pokeball size="large" />
             </div>
 
             <section className="outer-content-container">

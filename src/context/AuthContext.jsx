@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, {createContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext({});
@@ -11,13 +11,17 @@ function AuthContextProvider({ children }) {
 
     const navigate = useNavigate();
 
-    function login() {
+    function login(userDetails) {
+        localStorage.setItem('token', userDetails.token);
         console.log('Gebruiker is ingelogd!');
         toggleAuth({
             isAuth: true,
-            user: 'fake@email.nl',
+            user: {
+                email: userDetails.user.email,
+                roles: userDetails.user.roles,
+            },
         });
-        navigate('/profile');
+        navigate('/');
     }
 
     function logout() {
@@ -30,6 +34,7 @@ function AuthContextProvider({ children }) {
     }
 
     const contextData = {
+        user: auth.user,
         isAuth: auth.isAuth,
         login: login,
         logout: logout,

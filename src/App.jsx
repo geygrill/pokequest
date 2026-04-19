@@ -2,8 +2,8 @@ import './App.css'
 import {Route, Routes, Navigate} from 'react-router-dom';
 import Home from "./pages/homePage/Home.jsx";
 import Pokedex from "./pages/pokedexPage/Pokedex.jsx";
-import Login from "./pages/loginPage/Login.jsx";
-import Register from "./pages/registerPage/Register.jsx";
+import Login from "./pages/authPages/Login.jsx";
+import Register from "./pages/authPages/Register.jsx";
 import Quiz from "./pages/quizPage/Quiz.jsx";
 import Team from "./pages/teamPage/Team.jsx";
 import NotFound from "./pages/notFoundPage/NotFound.jsx";

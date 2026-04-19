@@ -43,3 +43,8 @@ body {
 input {
     font-family: inherit;
 }
+
+a {
+    color: var(--red);
+    text-decoration: none;
+}

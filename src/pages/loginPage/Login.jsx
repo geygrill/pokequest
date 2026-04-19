@@ -4,6 +4,7 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import axios from "axios";
 import { useForm } from 'react-hook-form';
 import ErrorMessage from "../../components/errorMessage/ErrorMessage.jsx";
+import Pokeball from "../../components/pokeball/Pokeball.jsx";
 
 function Login() {
     const { login } = useContext(AuthContext);
@@ -30,7 +31,7 @@ function Login() {
         <>
             <div className="outer-content-container login-page">
                 <div className="login-card">
-                    <div className="pokeball-icon" aria-hidden="true"></div>
+                    <Pokeball size="medium"/>
                     <h1>Inloggen</h1>
 
                     <form onSubmit={handleSubmit(handleFormSubmit)} noValidate className="auth-form">

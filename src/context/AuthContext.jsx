@@ -9,7 +9,9 @@ function AuthContextProvider({ children }) {
     const [auth, toggleAuth] = useState({
         isAuth: false,
         user: null,
+        status: 'pending',
     });
+
 
     useEffect(() => {
 
@@ -19,12 +21,23 @@ function AuthContextProvider({ children }) {
             if(isTokenValid(decoded)) {
                 toggleAuth({
                     isAuth: true,
+                    status: 'done',
                     user: {
                         email: decoded.email,
                         roles: decoded.role,
                     }
                 })
+            } else {
+                toggleAuth({
+                    ...auth,
+                    status: 'done',
+                })
             }
+        } else {
+            toggleAuth({
+                ...auth,
+                status: 'done',
+            })
         }
 
     }, [])
@@ -36,6 +49,7 @@ function AuthContextProvider({ children }) {
         console.log('Gebruiker is ingelogd!');
         toggleAuth({
             isAuth: true,
+            status: 'done',
             user: {
                 email: userDetails.user.email,
                 roles: userDetails.user.roles,
@@ -50,6 +64,7 @@ function AuthContextProvider({ children }) {
         toggleAuth({
             isAuth: false,
             user: null,
+            status: 'done',
         });
         navigate('/');
     }
@@ -63,7 +78,7 @@ function AuthContextProvider({ children }) {
 
     return (
         <AuthContext.Provider value={contextData}>
-            {children}
+            {auth.status === 'done' ? children : <p>Loading...</p>}
         </AuthContext.Provider>
     );
 }

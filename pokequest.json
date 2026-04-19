@@ -1,0 +1,53 @@
+{
+  "collections": [
+    {
+      "name": "placeholder",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "permissions": {
+        "GET": [
+          "user"
+        ],
+        "POST": [
+          "user"
+        ],
+        "PUT": [
+          "user"
+        ],
+        "PATCH": [
+          "user"
+        ],
+        "DELETE": [
+          "user"
+        ]
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "dev@dev",
+      "password": "dev",
+      "roles": [
+        "anonymous",
+        "user"
+      ]
+    },
+    {
+      "id": 2,
+      "email": "another.user@example.com",
+      "password": "another123",
+      "roles": [
+        "anonymous",
+        "user"
+      ]
+    }
+  ],
+  "data": {
+  }
+}

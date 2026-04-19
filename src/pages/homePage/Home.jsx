@@ -1,7 +1,11 @@
 import './Home.css'
 import {Link} from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext.jsx";
+import {useContext} from "react";
 
 function Home() {
+    const { isAuth } = useContext(AuthContext);
+
     return (
         <>
             <header className="header outer-content-container">
@@ -12,8 +16,17 @@ function Home() {
                     </p>
 
                     <div className="intro-buttons">
-                        <Link to="/register" className="btn-intro-primary">Maak een account</Link>
-                        <Link to="/login" className="btn-intro-secondary">Inloggen</Link>
+                        {isAuth ? (
+                            <>
+                                <Link to="/quiz" className="btn-intro-primary">Speel de Quiz</Link>
+                                <Link to="/team" className="btn-intro-secondary">Mijn Team</Link>
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/register" className="btn-intro-primary">Maak een account</Link>
+                                <Link to="/login" className="btn-intro-secondary">Inloggen</Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </header>

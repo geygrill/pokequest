@@ -1,5 +1,6 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import {jwtDecode} from "jwt-decode";
 
 export const AuthContext = createContext({});
 
@@ -8,6 +9,16 @@ function AuthContextProvider({ children }) {
         isAuth: false,
         user: null,
     });
+
+    useEffect(() => {
+
+        const jwtToken = localStorage.getItem('token');
+        if (jwtToken) {
+            const decoded = jwtDecode(jwtToken);
+            console.log(decoded);
+        }
+
+    }, [])
 
     const navigate = useNavigate();
 
@@ -26,6 +37,7 @@ function AuthContextProvider({ children }) {
 
     function logout() {
         console.log('Gebruiker is uitgelogd!');
+        localStorage.removeItem('token');
         toggleAuth({
             isAuth: false,
             user: null,

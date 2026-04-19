@@ -4,7 +4,7 @@ import {useContext} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 
 function Navigation() {
-    const { isAuth, logout } = useContext(AuthContext);
+    const { isAuth, logout, user } = useContext(AuthContext);
 
     return (
             <nav className="main-navigation outer-content-container">
@@ -23,7 +23,7 @@ function Navigation() {
                         <div className="navbar-auth">
                             {isAuth ? (
                                 <>
-                                    <li><span className="navbar-username">Hoi, Vera!</span></li>
+                                    <li><span className="navbar-username">Hoi, {user.email.split('@')[0]}!</span></li>
                                     <li><button onClick={logout} className="btn-logout">Uitloggen</button></li>
                                 </>
                                 ) : (

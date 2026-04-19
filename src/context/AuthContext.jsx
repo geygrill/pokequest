@@ -1,6 +1,7 @@
 import React, {createContext, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import {jwtDecode} from "jwt-decode";
+import isTokenValid from "../helpers/isTokenValid.js";
 
 export const AuthContext = createContext({});
 
@@ -15,7 +16,15 @@ function AuthContextProvider({ children }) {
         const jwtToken = localStorage.getItem('token');
         if (jwtToken) {
             const decoded = jwtDecode(jwtToken);
-            console.log(decoded);
+            if(isTokenValid(decoded)) {
+                toggleAuth({
+                    isAuth: true,
+                    user: {
+                        email: decoded.email,
+                        roles: decoded.role,
+                    }
+                })
+            }
         }
 
     }, [])

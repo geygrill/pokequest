@@ -16,7 +16,7 @@ function Navigation() {
                     </Link>
 
                     <ul className="main-navigation-links">
-                        <li><Link to="/search">Pokédex</Link></li>
+                        <li><Link to="/pokedex">Pokédex</Link></li>
                         <li><Link to="/quiz">Quiz</Link></li>
                         <li><Link to="/team">Mijn Team</Link></li>
 

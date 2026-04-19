@@ -1,5 +1,5 @@
 import './Login.css'
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import axios from "axios";
 import { useForm } from 'react-hook-form';
@@ -8,14 +8,18 @@ import Pokeball from "../../components/pokeball/Pokeball.jsx";
 
 function Login() {
     const { login } = useContext(AuthContext);
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    async function handleFormSubmit(e){
-        e.preventDefault();
+    async function handleFormSubmit(data){
+        toggleError(false);
+        toggleLoading(true);
+
         try {
             const response = await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/login', {
-                email: 'dev@dev',
-                password: 'dev',
+                email: data.email,
+                password: data.password,
             }, {
                 headers: {
                     'novi-education-project-id': '15434519-3993-48e6-93d6-56bf22754409',
@@ -24,7 +28,9 @@ function Login() {
             login(response.data);
         } catch(error){
             console.error(error);
+            toggleError(true);
         }
+        toggleLoading(false);
     }
 
     return (
@@ -66,7 +72,7 @@ function Login() {
                             />
                         </div>
 
-                        {errors && <ErrorMessage>Inloggen mislukt. Controleer je e-mailadres en wachtwoord.</ErrorMessage>}
+                        {error && <ErrorMessage>Inloggen mislukt. Controleer je e-mailadres en wachtwoord.</ErrorMessage>}
 
                         <button type="submit" className="btn-submit">
                             Inloggen

@@ -33,9 +33,12 @@ function Login() {
                     <div className="pokeball-icon" aria-hidden="true"></div>
                     <h1>Inloggen</h1>
 
-                    <form onSubmit={handleSubmit(handleFormSubmit)} noValidate>
+                    <form onSubmit={handleSubmit(handleFormSubmit)} noValidate className="auth-form">
                         <div className="form-group">
-                            <label htmlFor="email">E-mailadres</label>
+                            <div className="form-label-rij">
+                                <label htmlFor="email">E-mailadres</label>
+                                {errors.email && <span className="form-fout">{errors.email.message}</span>}
+                            </div>
                             <input
                                 id="email"
                                 type="email"
@@ -45,9 +48,28 @@ function Login() {
                                     validate: (value) =>
                                         value.includes('@') || 'Email moet een @ bevatten',
                                 })}
+                            /></div>
+
+                        <div className="form-group">
+                            <div className="form-label-rij">
+                                <label htmlFor="password">Wachtwoord</label>
+                                {errors.password && <span className="form-fout">{errors.password.message}</span>}
+                            </div>
+                            <input
+                                id="password"
+                                type="password"
+                                placeholder="Jouw wachtwoord"
+                                {...register('password', {
+                                    required: 'Wachtwoord is verplicht'
+                                })}
                             />
-                            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
                         </div>
+
+                        {errors && <ErrorMessage>Inloggen mislukt. Controleer je e-mailadres en wachtwoord.</ErrorMessage>}
+
+                        <button type="submit" className="btn-submit">
+                            Inloggen
+                        </button>
                     </form>
                 </div>
             </div>

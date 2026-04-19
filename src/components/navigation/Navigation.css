@@ -19,13 +19,6 @@
     height: 64px;
 }
 
-.navbar-auth {
-    display: flex;
-    align-items: center;
-    flex-basis: 200px;
-    justify-content: space-between;
-}
-
 .navbar-logo {
     font-size: 1.4rem;
     font-weight: 800;
@@ -59,6 +52,18 @@
     opacity: 1;
 }
 
+.navbar-username {
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+.navbar-auth {
+    display: flex;
+    align-items: center;
+    flex-basis: 200px;
+    justify-content: space-evenly;
+}
+
 .btn-login {
     border: 1px solid rgba(255, 255, 255, 0.5);
     padding: 0.4rem 0.9rem;
@@ -81,6 +86,21 @@
 
 .btn-register:hover {
     background: #e6b800;
+}
+
+.btn-logout {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.btn-logout:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 /* =========================

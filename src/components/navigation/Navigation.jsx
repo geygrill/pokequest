@@ -1,7 +1,11 @@
 import './Navigation.css'
 import {Link} from 'react-router-dom';
+import {useContext} from "react";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 function Navigation() {
+    const { isAuth, logout } = useContext(AuthContext);
+
     return (
             <nav className="main-navigation outer-content-container">
                 <div className="inner-nav-container">
@@ -17,8 +21,18 @@ function Navigation() {
                         <li><Link to="/team">Mijn Team</Link></li>
 
                         <div className="navbar-auth">
-                            <li><Link to="/login" className="btn-login">Inloggen</Link></li>
-                            <li><Link to="/register" className="btn-register">Registreren</Link></li>
+                            {isAuth ? (
+                                <>
+                                    <li><span className="navbar-username">Hoi, Vera!</span></li>
+                                    <li><button onClick={logout} className="btn-logout">Uitloggen</button></li>
+                                </>
+                                ) : (
+                                <>
+                                    <li><Link to="/login" className="btn-login">Inloggen</Link></li>
+                                    <li><Link to="/register" className="btn-register">Registreren</Link></li>
+                                </>)
+                            }
+
                         </div>
                     </ul>
                 </div>

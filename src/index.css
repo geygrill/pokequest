@@ -43,3 +43,12 @@ body {
 input {
     font-family: inherit;
 }
+
+html {
+    overflow-y: scroll;
+}
+
+
+* {
+    scrollbar-width: thin;
+}

@@ -1,10 +1,11 @@
-import './Login.css'
+import './Auth.css'
 import {useContext, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import axios from "axios";
 import { useForm } from 'react-hook-form';
 import ErrorMessage from "../../components/errorMessage/ErrorMessage.jsx";
 import Pokeball from "../../components/pokeball/Pokeball.jsx";
+import {Link} from "react-router-dom";
 
 function Login() {
     const { login } = useContext(AuthContext);
@@ -35,16 +36,16 @@ function Login() {
 
     return (
         <>
-            <div className="outer-content-container login-page">
-                <div className="login-card">
+            <div className="outer-content-container auth-page">
+                <div className="auth-card">
                     <Pokeball size="medium"/>
                     <h1>Inloggen</h1>
 
                     <form onSubmit={handleSubmit(handleFormSubmit)} noValidate className="auth-form">
                         <div className="form-group">
-                            <div className="form-label-rij">
+                            <div className="form-label-row">
                                 <label htmlFor="email">E-mailadres</label>
-                                {errors.email && <span className="form-fout">{errors.email.message}</span>}
+                                {errors.email && <span className="form-error">{errors.email.message}</span>}
                             </div>
                             <input
                                 id="email"
@@ -53,14 +54,13 @@ function Login() {
                                 {...register('email', {
                                     required: 'E-mailadres is verplicht',
                                     validate: (value) =>
-                                        value.includes('@') || 'Email moet een @ bevatten',
-                                })}
+                                        value.includes('@') && value.includes('.') || 'Ongeldig e-mailadres'                                })}
                             /></div>
 
                         <div className="form-group">
-                            <div className="form-label-rij">
+                            <div className="form-label-row">
                                 <label htmlFor="password">Wachtwoord</label>
-                                {errors.password && <span className="form-fout">{errors.password.message}</span>}
+                                {errors.password && <span className="form-error">{errors.password.message}</span>}
                             </div>
                             <input
                                 id="password"
@@ -78,6 +78,10 @@ function Login() {
                             Inloggen
                         </button>
                     </form>
+
+                    <p className="auth-page-switch">
+                        Nog geen account? <Link to="/register">Registreren</Link>
+                    </p>
                 </div>
             </div>
         </>

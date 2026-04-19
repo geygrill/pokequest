@@ -1,9 +1,9 @@
-.login-page {
+.auth-page {
     min-height: calc(100vh - 64px);
     align-items: center;
 }
 
-.login-card {
+.auth-card {
     flex-basis: 420px;
     margin: 2rem 1.5rem;
     background: white;
@@ -20,11 +20,11 @@
     text-align: left;
 }
 
-.login-card .pokeball-icon {
+.auth-card .pokeball-icon {
     margin: 0 auto 1.5rem;
 }
 
-.login-card h1 {
+.auth-card h1 {
     font-size: 1.75rem;
     margin-bottom: 1.5rem;
     color: var(--dark);
@@ -36,7 +36,7 @@
     gap: 0.3rem;
 }
 
-.form-label-rij {
+.form-label-row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -61,7 +61,7 @@
     border-color: var(--red);
 }
 
-.form-fout {
+.form-error {
     font-size: 0.75rem;
     color: var(--red);
 }
@@ -77,4 +77,14 @@
     cursor: pointer;
     transition: background 0.2s;
     margin-top: 0.5rem;
+}
+
+.auth-page-switch {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--grey);
+}
+
+.auth-page-switch a {
+    font-weight: 600;
 }

@@ -1,8 +1,8 @@
 import './Pokeball.css';
 
-function Pokeball({ size }) {
+function Pokeball({ size, className }) {
     return (
-        <div className={`pokeball-icon ${size ? `pokeball-${size}` : ''}`} aria-hidden="true" />
+        <div className={`pokeball-icon ${size ? `pokeball-${size}` : ''} ${className ?? ''}`} aria-hidden="true" />
     );
 }
 

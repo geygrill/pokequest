@@ -33,6 +33,7 @@
     transition: all 0.2s;
     border: 2px solid transparent;
     min-height: 275px;
+    text-align: center;
 }
 
 .team-slot:hover:not(.empty) {

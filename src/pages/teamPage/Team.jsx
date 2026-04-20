@@ -26,13 +26,13 @@ function Team() {
 
                         if (pokemon) {
                             return (
-                                <div key={pokemon.id} className="team-slot">
+                                <div key={pokemon.dbId} className="team-slot">
                                     <img
                                         src={pokemon.sprite}
                                         alt={pokemon.name}
                                         className="team-pokemon-img"
                                     />
-                                    <div className="team-pokemon-info">
+                                    <div>
                                         <h3>{pokemon.name}</h3>
                                         <div className="pokemon-types">
                                             {pokemon.types.map(type => (

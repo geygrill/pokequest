@@ -6,9 +6,13 @@ import {PokemonContext} from "../../context/PokemonContext.jsx";
 import {Link} from "react-router-dom";
 
 function Team() {
-    const { getTeam } = useContext(PokemonContext);
+    const { getTeam, removeFromTeam } = useContext(PokemonContext);
 
     const team = getTeam();
+
+    function handleRemove(pokemonId) {
+        removeFromTeam(pokemonId);
+    }
 
     return (
         <main className="outer-content-container">
@@ -38,6 +42,7 @@ function Team() {
                                     </div>
                                     <button
                                         className="btn-remove"
+                                        onClick={() => handleRemove(pokemon.id)}
                                     >
                                         Verwijderen
                                     </button>
@@ -58,7 +63,7 @@ function Team() {
                     <div className="team-empty-message">
                         <p>Je team is nog leeg!</p>
                         <p>
-                            Selecteer Pokémon uit je <Link to="/search">pokédex</Link> om je team samen te stellen.
+                            Selecteer pokémon uit je <Link to="/search">Pokédex</Link> om je team samen te stellen.
                         </p>
                     </div>
                 )}

@@ -1,11 +1,13 @@
 import Pokeball from '../pokeball/Pokeball';
 import './LoadingSpinner.css'
 
-function LoadingSpinner({ tekst }) {
+function LoadingSpinner({ children }) {
     return (
-        <div className="loading spinner">
-            <Pokeball size="medium" />
-            <p>{tekst}</p>
+        <div className="loading-spinner">
+            <div className="spinner">
+                <Pokeball size="medium"/>
+            </div>
+            <p className="loading-text">{children}</p>
         </div>
     );
 }

@@ -5,141 +5,107 @@ import {addCaught, addTeamMember, getCaught, getPokemon, getTeamMembers, removeT
 export const PokemonContext = createContext({});
 
 function PokemonContextProvider({ children }) {
-    const { user } = useContext(AuthContext);
+    const { user, isAuth } = useContext(AuthContext);
     const [caught, setCaught] = useState([]);
     const [team, setTeam] = useState([]);
     const token = localStorage.getItem("token");
 
     useEffect(() => {
-        if (token && user) {
+        if (isAuth && token && user) {
             loadPokemonData(token, user.id);
         } else {
             setCaught([]);
             setTeam([]);
         }
-    }, [user, token]);
+    }, [isAuth, user, token]);
 
     async function loadPokemonData(token, userId) {
         try {
             const [caughtData, teamData] = await Promise.all([
-                getCaught(token),
-                getTeamMembers(token),
+                getCaught(token, userId),
+                getTeamMembers(token, userId),
             ]);
 
-            const myCaughtRaw = caughtData.filter(item => Number(item.userId) === Number(userId));
-            const myTeamRaw = teamData.filter(item => Number(item.userId) === Number(userId));
+            const format = async (list) => {
+                const result = [];
 
-            const myCaught = await Promise.all(
-                myCaughtRaw.map(async (item) => {
+                for (const item of list) {
                     const pokemon = await getPokemon(item.pokemonId);
-                    return {
+
+                    result.push({
                         dbId: item.id,
                         id: pokemon.id,
                         name: pokemon.name,
-                        sprite: pokemon.sprite,
-                        types: pokemon.types,
-                    };
-                })
-            );
+                        sprite: pokemon.sprites.other['official-artwork'].front_default,
+                        types: pokemon.types.map(t => t.type.name),
+                    });
+                }
 
-            const myTeam = await Promise.all(
-                myTeamRaw.map(async (item) => {
-                    const pokemon = await getPokemon(item.pokemonId);
-                    return {
-                        dbId: item.id,
-                        id: pokemon.id,
-                        name: pokemon.name,
-                        sprite: pokemon.sprite,
-                        types: pokemon.types,
-                    };
-                })
-            );
+                return result;
+            };
 
-            setCaught(myCaught);
-            setTeam(myTeam);
+            setCaught(await format(caughtData));
+            setTeam(await format(teamData));
         } catch (e) {
             console.error('Fout bij laden pokemon data:', e);
         }
-    }
-
-    function getTeam() {
-        return team;
     }
 
     async function addToTeam(pokemon) {
         if (team.length >= 6) return false;
         if (team.find(p => p.id === pokemon.id)) return false;
 
-        const tempId = Date.now();
-
-        const newItem = {
-            dbId: tempId,
-            ...pokemon,
-        };
-
-        setTeam(prev => [...prev, newItem]);
-
         try {
             await addTeamMember(token, {
-                id: tempId,
                 userId: user.id,
                 pokemonId: pokemon.id,
             });
 
-            return true;
+            await loadPokemonData(token, user.id);
 
+            return true;
         } catch (e) {
-            setTeam(prev => prev.filter(p => p.dbId !== tempId));
             console.error('Kon niet aan team toevoegen:', e);
             return false;
         }
     }
 
     async function removeFromTeam(pokemonId) {
-        const item = team.find(p => p.id === pokemonId);
-        if (!item) return;
-
-        setTeam(prev => prev.filter(p => p.id !== pokemonId));
+        const pokemon = team.find(p => p.id === pokemonId);
+        if (!pokemon) return;
 
         try {
-            await removeTeamMember(token, item.dbId);
+            await removeTeamMember(token, pokemon.dbId);
+            await loadPokemonData(token, user.id);
         } catch (e) {
-            setTeam(prev => [...prev, item]);
             console.error('Kon niet uit team verwijderen:', e);
         }
-    }
-
-    function getCaught() {
-        return caught;
     }
 
     async function addToCaught(pokemon) {
         if (caught.find(p => p.id === pokemon.id)) return;
 
-        const tempId = Date.now();
-
-        const newItem = {
-            dbId: tempId,
-            ...pokemon,
-        };
-
-        setCaught(prev => [...prev, newItem]);
-
         try {
             await addCaught(token, {
-                id: tempId,
                 userId: user.id,
                 pokemonId: pokemon.id,
             });
 
+            await loadPokemonData(token, user.id);
+
             return true;
-
         } catch (e) {
-            setCaught(prev => prev.filter(p => p.dbId !== tempId));
-
             console.error('Kon niet toevoegen aan gevangen:', e);
             return false;
         }
+    }
+
+    function getCaughtPokemon() {
+        return caught;
+    }
+
+    function getTeam() {
+        return team;
     }
 
     return (
@@ -147,7 +113,7 @@ function PokemonContextProvider({ children }) {
             getTeam,
             addToTeam,
             removeFromTeam,
-            getCaught,
+            getCaughtPokemon,
             addToCaught,
         }}>
             {children}
@@ -156,4 +122,3 @@ function PokemonContextProvider({ children }) {
 }
 
 export default PokemonContextProvider;
-

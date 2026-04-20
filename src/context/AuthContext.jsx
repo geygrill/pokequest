@@ -23,6 +23,7 @@ function AuthContextProvider({ children }) {
                     isAuth: true,
                     status: 'done',
                     user: {
+                        id: decoded.userId,
                         email: decoded.email,
                         roles: decoded.role,
                     }

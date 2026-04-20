@@ -48,3 +48,9 @@ a {
     color: var(--red);
     text-decoration: none;
 }
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+}

@@ -1,4 +1,3 @@
-import '../registerPage/Register.css'
 import axios from "axios";
 import Pokeball from "../../components/pokeball/Pokeball.jsx";
 import {useForm} from "react-hook-form";
@@ -16,10 +15,11 @@ function Register() {
         toggleError(false);
         toggleLoading(true);
         try {
-            await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/users', {
-                    email: 'email@email.nl',
-                    password: 'email123',
-                    roles: ['admin'],
+            await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/users',
+                {
+                    email: data.email,
+                    password: data.password,
+                    roles: ['user'],
                 },
                 {
                     headers: {

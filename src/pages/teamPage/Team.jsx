@@ -10,13 +10,11 @@ function Team() {
 
     const team = getTeam();
 
-    console.log(team);
-
     return (
         <main className="outer-content-container">
             <div className="inner-content-container">
                 <h1 className="page-title">Mijn Team</h1>
-                <p className="team-capacity">{team.length} / 6 Pokémon</p>
+                <p className="team-capacity">{team.length}/6 Pokémon</p>
 
                 <div className="team-grid">
                     {Array.from({ length: 6 }).map((_, index) => {

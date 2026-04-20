@@ -25,8 +25,8 @@ export function formatPokemon(pokemon) {
     };
 }
 
-export async function getCaught(token) {
-    const response = await axios.get(`${NOVI_BASE_URL}/api/catches`, { headers: authHeader(token) });
+export async function getCaught(token, userId) {
+    const response = await axios.get(`${NOVI_BASE_URL}/api/catches?userId=${userId}`, { headers: authHeader(token) });
     return response.data;
 }
 
@@ -35,8 +35,8 @@ export async function addCaught(token, item) {
     return response.data;
 }
 
-export async function getTeamMembers(token) {
-    const response = await axios.get(`${NOVI_BASE_URL}/api/team_members`, { headers: authHeader(token) });
+export async function getTeamMembers(token, userId) {
+    const response = await axios.get(`${NOVI_BASE_URL}/api/team_members?userId=${userId}`, { headers: authHeader(token) });
     return response.data;
 }
 

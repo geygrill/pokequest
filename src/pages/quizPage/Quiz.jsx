@@ -85,9 +85,18 @@ function Quiz() {
     const team = getTeam();
     const isInTeam = !!pokemon && team.some(p => p.id === pokemon.id);
     const teamIsFull = team.length >= 6;
+    const typeColor = pokemon ? getTypeColor(pokemon.types[0].type.name) : '#6890F0';
 
     return (
         <div className="quiz-wrapper">
+
+            {status !== 'playing' && (
+                <div
+                    className="quiz-pokemon-bg-color"
+                    style={{ background: `radial-gradient(ellipse at 50% 45%, ${typeColor}50 0%, transparent 80%)` }}
+                />
+            )}
+
             <div className="quiz-title-wrapper">
                 {status === 'playing' && (
                     <h1 className="quiz-title">Wie is deze Pokémon?!</h1>
@@ -113,7 +122,7 @@ function Quiz() {
                 />
             </div>
 
-            <div className="quiz-botom">
+            <div className="quiz-bottom">
 
                 {status === 'playing' && (
                     <form onSubmit={handleGuess} className="quiz-form">

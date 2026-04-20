@@ -4,12 +4,15 @@ import {useForm} from "react-hook-form";
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage.jsx";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
+
+    const navigate = useNavigate();
 
     async function handleFormSubmit(data){
         toggleError(false);
@@ -27,6 +30,7 @@ function Register() {
                     },
                 }
             );
+            navigate('/login');
         } catch(error){
             console.error(error);
         }

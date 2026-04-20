@@ -90,6 +90,10 @@
    FEATURE SECTION
 ========================= */
 
+.features-section {
+    padding: 3rem 0;
+}
+
 .feature-title {
     font-size: 1.75rem;
     font-weight: 800;

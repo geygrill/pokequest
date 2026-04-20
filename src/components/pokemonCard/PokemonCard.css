@@ -12,7 +12,7 @@
 }
 
 .pokemon-card.in-team {
-    border-color: var(--yellow);
+    border-color: var(--red);
 }
 
 .pokemon-card-top {

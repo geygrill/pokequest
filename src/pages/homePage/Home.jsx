@@ -36,7 +36,7 @@ function Home() {
                 <Pokeball size="large" />
             </div>
 
-            <section className="outer-content-container">
+            <section className="outer-content-container features-section">
                 <div className="inner-content-container">
                     <h2 className="feature-title">Wat kun je doen?</h2>
                     <div className="feature-cards">

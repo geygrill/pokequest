@@ -110,8 +110,8 @@ function Pokedex() {
                             pokemon={pokemon}
                             inTeam={!!team.find(p => p.id === pokemon.id)}
                             teamIsFull={team.length >= 6}
-                            onAdd={handleAddToTeam}
-                            onRemove={handleRemoveFromTeam}
+                            handleAdd={handleAddToTeam}
+                            handleRemove={handleRemoveFromTeam}
                         />
                     ))}
                 </div>

@@ -10,7 +10,7 @@ function normalizeName(name) {
 }
 
 function Quiz() {
-    const { addToTeam, getTeam, addToCaught, getCaught } = useContext(PokemonContext);
+    const { addToTeam, getTeam, addToCaught } = useContext(PokemonContext);
 
     const [loading, setLoading] = useState(true);
     const [pokemon, setPokemon] = useState(null);
@@ -38,7 +38,7 @@ function Quiz() {
         try {
             const id = Math.floor(Math.random() * 151) + 1;
             const data = await getPokemon(id);
-            setPokemon(data);
+            setPokemon(formatPokemon(data));
         } catch(error) {
             console.error(error);
             setError(true);
@@ -52,16 +52,14 @@ function Quiz() {
         if (!guess.trim() || !pokemon) return;
         if (normalizeName(guess) === normalizeName(pokemon.name)) {
             setStatus('correct');
-            addToCaught(formatPokemon(pokemon));
+            addToCaught(pokemon);
         } else {
             setStatus('wrong');
         }
-        console.log(getTeam());
-        console.log(getCaught());
     }
 
     async function handleAddToTeam() {
-        const success = await addToTeam(formatPokemon(pokemon));
+        const success = await addToTeam(pokemon);
         if (success) setIsPokemonAdded(true);
     }
 
@@ -85,7 +83,7 @@ function Quiz() {
     const team = getTeam();
     const isInTeam = !!pokemon && team.some(p => p.id === pokemon.id);
     const teamIsFull = team.length >= 6;
-    const typeColor = pokemon ? getTypeColor(pokemon.types[0].type.name) : '#6890F0';
+    const typeColor = pokemon ? getTypeColor(pokemon.types[0]) : '#6890F0';
 
     return (
         <div className="quiz-wrapper">
@@ -116,7 +114,7 @@ function Quiz() {
             <div className="quiz-pokemon-wrapper">
                 <img
                     key={`${pokemon.id}-${status}`}
-                    src={pokemon.sprites.other['official-artwork'].front_default}
+                    src={pokemon.sprite}
                     alt={status === 'playing' ? 'Wie is deze Pokémon?' : pokemon.name}
                     className={`quiz-pokemon-img ${status === 'playing' ? 'silhouette' : 'revealed'}`}
                 />
@@ -142,7 +140,7 @@ function Quiz() {
                     <div className="quiz-result">
                         <div className="pokemon-types">
                             {pokemon.types.map(t => (
-                                <TypeBadge key={t.type.name} type={t.type.name} isLarge={true} />
+                                <TypeBadge key={t} type={t} isLarge={true} />
                             ))}
                         </div>
 
@@ -152,6 +150,7 @@ function Quiz() {
                                     {isPokemonAdded ? '✓ Toegevoegd' : '+ Aan team toevoegen'}
                                 </button>
                             )}
+                            {teamIsFull && <span className="quiz-label-white">Team is vol!</span>}
                             {isInTeam && <span className="quiz-label-white">✓ Al in je team</span>}
 
                             <button onClick={loadNewPokemon} className="quiz-btn-next">
@@ -165,7 +164,7 @@ function Quiz() {
                     <div className="quiz-result">
                         <div className="pokemon-types">
                             {pokemon.types.map(t => (
-                                <TypeBadge key={t.type.name} type={t.type.name} isLarge={true} />
+                                <TypeBadge key={t} type={t} isLarge={true} />
                             ))}
                         </div>
                         <p className="quiz-wrong-guess">Jij zei: "{guess}"</p>

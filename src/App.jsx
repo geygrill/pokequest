@@ -22,10 +22,10 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/pokedex" element={ isAuth ? <Pokedex/> : <Navigate to="/"/>}/>
+                <Route path="/pokedex" element={ isAuth ? <Pokedex/> : <Navigate to="/login"/>}/>
                 <Route path="/register" element={<Register/>}/>
-                <Route path="/quiz" element={<Quiz/>}/>
-                <Route path="/team" element={ isAuth ? <Team/> : <Navigate to="/"/>}/>
+                <Route path="/quiz" element={ isAuth ? <Quiz/> : <Navigate to="/login"/>}/>
+                <Route path="/team" element={ isAuth ? <Team/> : <Navigate to="/login"/>}/>
                 <Route path="*" element={<NotFound/>}/>
             </Routes>
         </main>

@@ -47,11 +47,13 @@ function AuthContextProvider({ children }) {
 
     function login(userDetails) {
         localStorage.setItem('token', userDetails.token);
+        const decoded = jwtDecode(userDetails.token);
         console.log('Gebruiker is ingelogd!');
         toggleAuth({
             isAuth: true,
             status: 'done',
             user: {
+                id: decoded.userId,
                 email: userDetails.user.email,
                 roles: userDetails.user.roles,
             },

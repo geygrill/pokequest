@@ -62,7 +62,7 @@ function Quiz() {
 
     async function handleAddToTeam() {
         const success = await addToTeam(formatPokemon(pokemon));
-        if (success) setAdded(true);
+        if (success) setIsPokemonAdded(true);
     }
 
     if (loading) {

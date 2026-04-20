@@ -59,16 +59,20 @@ function Team() {
                     })}
                 </div>
 
-                {team.length === 1 && (
-                    <div className="team-empty-message">
-                        <p>Je team is nog leeg!</p>
-                        <p>
+                <div className="team-message">
+                    {team.length === 0 && (
+                        <p className="team-message-empty">Je team is nog leeg!</p>
+                    )}
+                    {team.length < 6 && (
+                        <p className="team-message-link">
                             Selecteer pokémon uit je <Link to="/search">Pokédex</Link> om je team samen te stellen.
                         </p>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
         </main>
+
+
     )
 }
 

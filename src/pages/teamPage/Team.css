@@ -61,16 +61,8 @@
     text-transform: capitalize;
 }
 
-/* Grey pokeball for empty slots */
 .team-empty-pokeball {
     filter: grayscale(1) opacity(0.4);
-}
-
-.team-empty-message {
-    text-align: center;
-    color: var(--grey);
-    margin-top: 2rem;
-    line-height: 2;
 }
 
 .btn-remove {
@@ -86,5 +78,33 @@
 .btn-remove:hover {
     background: var(--red);
     color: white;
+}
+
+
+/* =========================
+   MESSAGE SECTION
+========================= */
+
+.team-message {
+    text-align: center;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.team-message-empty {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--grey);
+}
+
+.team-message-link {
+    color: var(--grey);
+    font-size: 0.9rem;
+}
+
+.team-message-link a {
+    font-weight: 600;
 }
 

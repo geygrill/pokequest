@@ -25,6 +25,13 @@ export function formatPokemon(pokemon) {
     };
 }
 
+export async function getPokemonTypes() {
+    const response = await axios.get(`${POKE_BASE_URL}/type`);
+    return response.data.results
+        .map(t => t.name)
+        .filter(name => name !== 'unknown');
+}
+
 export async function getCaught(token, userId) {
     const response = await axios.get(`${NOVI_BASE_URL}/api/catches?userId=${userId}`, { headers: authHeader(token) });
     return response.data;

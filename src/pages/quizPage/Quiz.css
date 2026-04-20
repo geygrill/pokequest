@@ -50,6 +50,19 @@
 
 .quiz-pokemon-img.silhouette {
     filter: brightness(0);
+    animation:
+            pokemon-entree 0.65s cubic-bezier(0.3, 1.6, 0.7, 1) both,
+            pokemon-bounce 3.2s ease-in-out 0.7s infinite;
+}
+
+@keyframes pokemon-entree {
+    from { transform: translateY(80px) scale(0.4); opacity: 0; }
+    to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes pokemon-bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-20px); }
 }
 
 .quiz-form {

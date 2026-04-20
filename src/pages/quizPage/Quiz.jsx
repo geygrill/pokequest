@@ -68,7 +68,7 @@ function Quiz() {
     if (loading) {
         return (
             <div className="quiz-wrapper">
-                <LoadingSpinner tekst="Pokémon aan het laden..." />
+                <LoadingSpinner>Pokémon aan het laden...</LoadingSpinner>
             </div>
         );
     }

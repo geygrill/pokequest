@@ -41,10 +41,11 @@
 }
 
 .team-slot.empty {
+    font-style: italic;
     border: 2px dashed #d1d5db;
     background: #f9fafb;
-    color: var(--grey);
-    font-size: 0.9rem;
+    color: #9ca3af;
+    font-size: 0.85rem;
 }
 
 .team-pokemon-img {
@@ -69,7 +70,6 @@
     text-align: center;
     color: var(--grey);
     margin-top: 2rem;
-    font-size: 1rem;
     line-height: 2;
 }
 

@@ -1,12 +1,53 @@
 import './Pokedex.css'
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {PokemonContext} from "../../context/PokemonContext.jsx";
+import {getPokemonTypes} from "../../helpers/pokemon.js";
+import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner.jsx";
+import {Link} from "react-router-dom";
+import PokemonCard from "../../components/pokemonCard/PokemonCard.jsx";
 
 function Pokedex() {
-    const { getCaughtPokemon, getTeam } = useContext(PokemonContext);
+    const [filter, setFilter] = useState('');
+    const [typeFilter, setTypeFilter] = useState('');
+    const { getCaughtPokemon, getTeam, addToTeam, removeFromTeam } = useContext(PokemonContext);
+    const [allTypes, setAllTypes] = useState([]);
 
     const caught = getCaughtPokemon();
     const team = getTeam();
+
+    async function loadTypes() {
+        try {
+            const types = await getPokemonTypes();
+            setAllTypes(types);
+        } catch (error) {
+            console.error("Fout bij laden types:", error);
+            setAllTypes([]);
+        }
+    }
+
+    useEffect(() => {
+        loadTypes();
+    }, []);
+
+    const filtered = caught
+        .filter(p =>
+            p.name.toLowerCase().includes(filter.toLowerCase()) &&
+            (!typeFilter || p.types.includes(typeFilter))
+        )
+        .sort((a, b) => a.id - b.id);
+
+    const availableTypes = allTypes.filter(type =>
+        caught.some(p => p.types.includes(type))
+    );
+
+
+    function handleAddToTeam(pokemon) {
+        addToTeam(pokemon);
+    }
+
+    function handleRemoveFromTeam(pokemonId) {
+        removeFromTeam(pokemonId);
+    }
 
     return (
         <main className="outer-content-container">
@@ -15,11 +56,67 @@ function Pokedex() {
 
                 <p className="pokedex-subtitle">
                     {caught.length === 0
-                        ? 'Doe de quiz om Pokémon te vangen!'
+                        ? 'Hier kan je al je gevangen Pokémon zien!'
                         : `${caught.length} van de 151 Pokémon gevangen • ${team.length}/6 in je team`
                     }
                 </p>
+
+                {caught.length > 0 && (
+                    <>
+                        <div className="filter-wrapper">
+                            <input
+                                type="text"
+                                value={filter}
+                                onChange={(e) => setFilter(e.target.value)}
+                                placeholder="Zoek op naam..."
+                                className="search-input"
+                            />
+                        </div>
+
+                        {availableTypes.length > 0 && (
+                            <div className="type-filter-wrapper">
+                                <button
+                                    className={`type-filter-btn ${typeFilter === '' ? 'active' : ''}`}
+                                    onClick={() => setTypeFilter('')}
+                                >
+                                    Alle types
+                                </button>
+                                {availableTypes.map(type => (
+                                    <button
+                                        key={type}
+                                        className={`type-filter-btn ${typeFilter === type ? 'active' : ''}`}
+                                        onClick={() => setTypeFilter(type)}
+                                    >
+                                        {type}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </>
+                )}
+
+                {caught.length === 0 && (
+                    <div className="pokedex-empty">
+                        <LoadingSpinner />
+                        <p>Je Pokédex is nog leeg.</p>
+                        <p>Raad Pokémon goed in de <Link to="/quiz">quiz</Link> om ze te vangen!</p>
+                    </div>
+                )}
+
+                <div className="pokemon-grid">
+                    {filtered.map(pokemon => (
+                        <PokemonCard
+                            key={pokemon.id}
+                            pokemon={pokemon}
+                            inTeam={!!team.find(p => p.id === pokemon.id)}
+                            teamIsFull={team.length >= 6}
+                            onAdd={handleAddToTeam}
+                            onRemove={handleRemoveFromTeam}
+                        />
+                    ))}
+                </div>
             </div>
+
         </main>
     )
 }

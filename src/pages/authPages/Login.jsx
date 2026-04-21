@@ -76,8 +76,8 @@ function Login() {
 
                         {error && <ErrorMessage>Inloggen mislukt. Controleer je e-mailadres en wachtwoord.</ErrorMessage>}
 
-                        <Button type="submit" variant="red" fullWidth>
-                            Inloggen
+                        <Button type="submit" variant="red" fullWidth disabled={loading}>
+                            {loading ? 'Bezig...' : 'Inloggen'}
                         </Button>
                     </form>
 

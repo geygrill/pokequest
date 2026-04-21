@@ -10,7 +10,7 @@ function Home() {
     return (
         <>
             <header className="header outer-content-container">
-                <div className="intro-inner-container">
+                <section className="intro-inner-container">
                     <h1>Welkom bij PokéQuest!</h1>
                     <p className="intro-text">
                         Test je Pokémon-kennis, bouw je droomteam en ontdek al je favoriete Pokémon!
@@ -29,7 +29,7 @@ function Home() {
                             </>
                         )}
                     </div>
-                </div>
+                </section>
             </header>
 
             <div className="pokeball-wrapper" aria-hidden="true">

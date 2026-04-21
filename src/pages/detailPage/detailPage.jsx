@@ -23,6 +23,7 @@ function DetailPage() {
     const { getTeam, addToTeam, removeFromTeam } = useContext(PokemonContext);
 
     async function loadPokemon(controller) {
+        setPopup(false)
         setLoading(true);
         setError(false);
 
@@ -64,21 +65,21 @@ function DetailPage() {
 
     if (loading) {
         return (
-            <div className="outer-content-container">
+            <main className="outer-content-container">
                 <div className="inner-content-container">
                     <LoadingSpinner>Pokémon aan het laden...</LoadingSpinner>
                 </div>
-            </div>
+            </main>
         );
     }
 
     if (error) {
         return (
-            <div className="outer-content-container">
+            <main className="outer-content-container">
                 <div className="inner-content-container">
                     <ErrorMessage>Kon deze Pokémon niet laden. Probeer het opnieuw.</ErrorMessage>
                 </div>
-            </div>
+            </main>
         );
     }
 
@@ -103,7 +104,7 @@ function DetailPage() {
     }
 
     return (
-        <div className="outer-content-container">
+        <main className="outer-content-container">
 
             {popup && pokemon && (
                 <Popup>
@@ -117,9 +118,8 @@ function DetailPage() {
                     ← Terug
                 </Button>
 
-                <div className="detail-card" style={{ '--type-color': typeColor }}>
-
-                    <div className="detail-left">
+                <article className="detail-card" style={{ '--type-color': typeColor }}>
+                    <section className="detail-left">
                         <img
                             src={pokemon.sprites.other['official-artwork'].front_default}
                             alt={formatPokemonName(pokemon.name)}
@@ -128,11 +128,13 @@ function DetailPage() {
                         <h1 className="detail-name">{formatPokemonName(pokemon.name)}</h1>
                         <p className="detail-number">#{String(pokemon.id).padStart(3, '0')}</p>
 
-                        <div className="pokemon-types">
+                        <ul className="pokemon-types">
                             {types.map(type => (
-                                <TypeBadge key={type} type={type} />
+                                <li key={type}>
+                                    <TypeBadge type={type} />
+                                </li>
                             ))}
-                        </div>
+                        </ul>
 
                         {description && (
                             <p className="detail-description">{description}</p>
@@ -148,13 +150,14 @@ function DetailPage() {
                                 <span className="detail-measurement-value">{(pokemon.weight / 10).toFixed(1)} kg</span>
                             </div>
                         </div>
-                    </div>
+                    </section>
 
-                    <div className="detail-right">
+                    <section className="detail-right">
                         <h2 className="detail-stats-title">Stats</h2>
-                        <div className="detail-stats">
+
+                        <ul className="detail-stats">
                             {pokemon.stats.map(s => (
-                                <div key={s.stat.name} className="stat-row">
+                                <li key={s.stat.name} className="stat-row">
                                     <span className="stat-name">{s.stat.name}</span>
                                     <span className="stat-value">{s.base_stat}</span>
                                     <div className="stat-bar-bg">
@@ -163,20 +166,25 @@ function DetailPage() {
                                             style={{ width: `${Math.min(s.base_stat / 255 * 100, 100)}%` }}
                                         />
                                     </div>
-                                </div>
+                                </li>
                             ))}
-                        </div>
+                        </ul>
 
-                        <h2 className="detail-stats-title">Abilities</h2>
-                        <div className="detail-abilities">
-                            {pokemon.abilities.map(a => (
-                                <span key={a.ability.name} className={`ability-badge ${a.is_hidden ? 'ability-hidden' : ''}`}>
-                                    {a.ability.name}
-                                </span>
-                            ))}
-                        </div>
+                        <section className="detail-abilities-section">
+                            <h2 className="detail-stats-title">Abilities</h2>
 
-                        <div className="detail-team-action">
+                            <ul className="detail-abilities">
+                                {pokemon.abilities.map(a => (
+                                    <li key={a.ability.name}>
+                                        <span className={`ability-badge ${a.is_hidden ? 'ability-hidden' : ''}`}>
+                                            {a.ability.name}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </section>
+
+                        <div className="detail-team-btn">
                             {inTeam ? (
                                 <Button variant="remove" fullWidth onClick={handleTeamBtn}>
                                     Uit team verwijderen
@@ -187,10 +195,10 @@ function DetailPage() {
                                 </Button>
                             )}
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
             </div>
-        </div>
+        </main>
     );
 }
 

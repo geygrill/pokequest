@@ -32,8 +32,9 @@ function Login() {
         } catch(error){
             console.error(error);
             toggleError(true);
+        } finally {
+            toggleLoading(false);
         }
-        toggleLoading(false);
     }
 
     return (

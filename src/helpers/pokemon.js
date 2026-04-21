@@ -11,8 +11,10 @@ function authHeader(token) {
     };
 }
 
-export async function getPokemon(nameOrId) {
-    const response = await axios.get(`${POKE_BASE_URL}/pokemon/${String(nameOrId).toLowerCase()}`);
+export async function getPokemon(nameOrId, signal) {
+    const response = await axios.get(`${POKE_BASE_URL}/pokemon/${String(nameOrId).toLowerCase()}`, {
+        signal,
+    });
     return response.data;
 }
 

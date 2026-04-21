@@ -51,7 +51,7 @@ function Quiz() {
             console.error(error);
             setError(true);
         } finally {
-            if (!controller.signal.aborted) {
+            if (!controller?.signal?.aborted) {
                 setLoading(false);
             }
         }
@@ -160,10 +160,10 @@ function Quiz() {
                                     {isPokemonAdded ? '✓ Toegevoegd' : '+ Aan team toevoegen'}
                                 </Button>
                             )}
-                            {teamIsFull && <span className="quiz-label-white">Team is vol!</span>}
+                            {teamIsFull && !isPokemonAdded && <span className="quiz-label-white">Team is vol!</span>}
                             {isInTeam && <span className="quiz-label-white">✓ Al in je team</span>}
 
-                            <Button variant="outline" size="sm" roundedonClick={() => loadNewPokemon()}>
+                            <Button variant="outline" size="sm" rounded onClick={() => loadNewPokemon()}>
                                 Volgende →
                             </Button>
                         </div>

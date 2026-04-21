@@ -54,23 +54,28 @@
   "users": [
     {
       "id": 1,
-      "email": "dev@dev",
-      "password": "dev",
+      "email": "test@pokequest.nl",
+      "password": "test123",
       "roles": [
-        "anonymous",
-        "user"
-      ]
-    },
-    {
-      "id": 2,
-      "email": "another.user@example.com",
-      "password": "another123",
-      "roles": [
-        "anonymous",
         "user"
       ]
     }
   ],
   "data": {
+    "catches": [
+      { "id": 1, "userId": 1, "pokemonId": 1 },
+      { "id": 2, "userId": 1, "pokemonId": 4 },
+      { "id": 3, "userId": 1, "pokemonId": 7 },
+      { "id": 4, "userId": 1, "pokemonId": 25 },
+      { "id": 5, "userId": 1, "pokemonId": 39 },
+      { "id": 6, "userId": 1, "pokemonId": 52 },
+      { "id": 7, "userId": 1, "pokemonId": 133 },
+      { "id": 8, "userId": 1, "pokemonId": 143 }
+    ],
+    "team_members": [
+      { "id": 1, "userId": 1, "pokemonId": 25 },
+      { "id": 2, "userId": 1, "pokemonId": 1 },
+      { "id": 3, "userId": 1, "pokemonId": 133 }
+    ]
   }
 }

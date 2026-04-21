@@ -41,39 +41,6 @@
     justify-content: center;
 }
 
-.btn-intro-primary {
-    background: var(--yellow);
-    color: var(--dark);
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
-    font-weight: 800;
-    font-size: 1rem;
-    transition: all 0.2s;
-    text-decoration: none;
-}
-
-.btn-intro-primary:hover {
-    background: #e6b800;
-    transform: translateY(-2px);
-}
-
-.btn-intro-secondary {
-    background: rgba(255, 255, 255, 0.15);
-    color: var(--white);
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 1rem;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    transition: all 0.2s;
-    text-decoration: none;
-}
-
-.btn-intro-secondary:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-}
-
 /* =========================
    POKEBALL DIVIDER
 ========================= */
@@ -118,11 +85,6 @@
     box-shadow: var(--shadow-small);
     transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
     border: 2px solid transparent;
-}
-
-.feature-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
 }
 
 .feature-card h3 {

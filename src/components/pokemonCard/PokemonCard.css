@@ -99,3 +99,9 @@
     margin-top: 0.25rem;
     border-radius: 8px;
  }
+
+.pokemon-card-footer .btn {
+    margin-top: 0.25rem;
+    font-size: 0.72rem;
+    padding: 0.35rem 0.5rem;
+}

@@ -5,6 +5,7 @@ import Pokeball from "../../components/pokeball/Pokeball.jsx";
 import {PokemonContext} from "../../context/PokemonContext.jsx";
 import {Link} from "react-router-dom";
 import {formatPokemonName} from "../../helpers/pokemon.js";
+import Button from "../../components/button/Button.jsx";
 
 function Team() {
     const { getTeam, removeFromTeam } = useContext(PokemonContext);
@@ -41,12 +42,9 @@ function Team() {
                                             ))}
                                         </div>
                                     </div>
-                                    <button
-                                        className="btn-remove"
-                                        onClick={() => handleRemove(pokemon.id)}
-                                    >
+                                    <Button variant="remove" size="sm" onClick={() => handleRemove(pokemon.id)}>
                                         Verwijderen
-                                    </button>
+                                    </Button>
                                 </div>
                             );
                         }

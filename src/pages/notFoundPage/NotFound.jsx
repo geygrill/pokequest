@@ -18,7 +18,7 @@ function NotFoundPage() {
                 <h1 className="not-found-title">Pagina niet gevonden</h1>
                 <p className="not-found-text">Deze pagina bestaat niet. Of wel? Psyduck weet het niet meer.</p>
                 <p className="not-found-text">Zijn hoofd doet nu pijn.</p>
-                <Link to="/" className="btn-submit not-found-btn">Breng me weg van hier</Link>
+                <Link to="/" className="btn btn--red btn--md not-found-btn">Breng me weg van hier</Link>
             </div>
         </main>
     );

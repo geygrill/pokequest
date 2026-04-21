@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scrollbar-width: thin;
 }
 
 body {
@@ -49,18 +50,6 @@ a {
     text-decoration: none;
 }
 
-button {
-    cursor: pointer;
-    font-family: inherit;
-    border: none;
-}
-
-
 html {
     overflow-y: scroll;
-}
-
-
-* {
-    scrollbar-width: thin;
 }

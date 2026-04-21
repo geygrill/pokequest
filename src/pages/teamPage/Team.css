@@ -66,18 +66,13 @@
     filter: grayscale(1) opacity(0.4);
 }
 
-.btn-remove {
-    background: var(--red);
-    color: white;
-    border: 1px solid var(--red);
-    padding: 0.3rem 0.75rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    transition: all 0.2s;
+.team-slot .btn--remove {
+    background: transparent;
+    color: var(--red);
+    border: 1.5px solid var(--red);
 }
-
-.btn-remove:hover {
-    background: #cc0000;
+.team-slot .btn--remove:hover {
+    background: var(--red);
     color: white;
 }
 

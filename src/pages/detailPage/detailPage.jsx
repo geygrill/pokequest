@@ -6,6 +6,7 @@ import TypeBadge from '../../components/typeBadge/TypeBadge';
 import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner';
 import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 import './detailPage.css';
+import Button from "../../components/button/Button.jsx";
 
 function DetailPage() {
     const { id } = useParams();
@@ -82,9 +83,9 @@ function DetailPage() {
         <div className="outer-content-container">
             <div className="inner-content-container">
 
-                <button className="detail-back-btn" onClick={() => navigate(-1)}>
+                <Button variant="text" className="detail-back-btn" onClick={() => navigate(-1)}>
                     ← Terug
-                </button>
+                </Button>
 
                 <div className="detail-card" style={{ '--type-color': typeColor }}>
 
@@ -147,19 +148,13 @@ function DetailPage() {
 
                         <div className="detail-team-action">
                             {inTeam ? (
-                                <button onClick={handleTeamBtn}
-                                        className="btn-remove"
-                                >
+                                <Button variant="remove" fullWidth onClick={handleTeamBtn}>
                                     Uit team verwijderen
-                                </button>
+                                </Button>
                             ) : (
-                                <button
-                                    onClick={handleTeamBtn}
-                                    className="btn-add-team"
-                                    disabled={teamIsFull}
-                                >
+                                <Button variant="primary" fullWidth disabled={teamIsFull} onClick={handleTeamBtn}>
                                     {teamIsFull ? 'Team is vol (6/6)' : 'Aan team toevoegen'}
-                                </button>
+                                </Button>
                             )}
                         </div>
                     </div>

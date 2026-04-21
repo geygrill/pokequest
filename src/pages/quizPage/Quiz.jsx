@@ -4,6 +4,7 @@ import TypeBadge from "../../components/typeBadge/TypeBadge.jsx";
 import {formatPokemon, formatPokemonName, getPokemon, getTypeColor} from "../../helpers/pokemon.js";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner.jsx";
 import {PokemonContext} from "../../context/PokemonContext.jsx";
+import Button from "../../components/button/Button.jsx";
 
 function normalizeName(name) {
     return name.toLowerCase().trim();
@@ -75,7 +76,7 @@ function Quiz() {
         return (
             <div className="quiz-wrapper">
                 <p>Er ging iets mis bij het laden van de Pokémon. Probeer het opnieuw.</p>
-                <button onClick={loadNewPokemon} className="quiz-button-next">Opnieuw proberen</button>
+                <Button variant="outline" size="md" rounded onClick={loadNewPokemon}>Opnieuw proberen</Button>
             </div>
         );
     }
@@ -132,7 +133,7 @@ function Quiz() {
                             className="quiz-input"
                             autoFocus
                         />
-                        <button type="submit" className="quiz-btn-guess">Raden!</button>
+                        <Button type="submit" variant="primary" size="md" rounded className="btn--hover-scale">Raden!</Button>
                     </form>
                 )}
 
@@ -146,16 +147,16 @@ function Quiz() {
 
                         <div className="quiz-buttons">
                             {!isInTeam && !teamIsFull && (
-                                <button onClick={handleAddToTeam} className="quiz-btn-add-team" disabled={isPokemonAdded || isInTeam}>
+                                <Button variant="primary" size="sm" rounded className="btn--hover-scale" onClick={handleAddToTeam} disabled={isPokemonAdded || isInTeam}>
                                     {isPokemonAdded ? '✓ Toegevoegd' : '+ Aan team toevoegen'}
-                                </button>
+                                </Button>
                             )}
                             {teamIsFull && <span className="quiz-label-white">Team is vol!</span>}
                             {isInTeam && <span className="quiz-label-white">✓ Al in je team</span>}
 
-                            <button onClick={loadNewPokemon} className="quiz-btn-next">
+                            <Button variant="outline" size="sm" rounded onClick={loadNewPokemon}>
                                 Volgende →
-                            </button>
+                            </Button>
                         </div>
                     </div>
                 )}
@@ -168,9 +169,9 @@ function Quiz() {
                             ))}
                         </div>
                         <p className="quiz-wrong-guess">Jij zei: "{guess}"</p>
-                        <button onClick={loadNewPokemon} className="quiz-btn-next">
+                        <Button variant="outline" size="sm" rounded onClick={loadNewPokemon}>
                             Volgende Pokémon →
-                        </button>
+                        </Button>
                     </div>
                 )}
 

@@ -7,6 +7,7 @@ import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner';
 import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 import './detailPage.css';
 import Button from "../../components/button/Button.jsx";
+import Popup from "../../components/popup/Popup.jsx";
 
 function DetailPage() {
     const { id } = useParams();
@@ -16,6 +17,8 @@ function DetailPage() {
     const [species, setSpecies] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [teamPopup, setTeamPopup] = useState(false);
+
 
     const { getTeam, addToTeam, removeFromTeam } = useContext(PokemonContext);
 
@@ -82,14 +85,21 @@ function DetailPage() {
 
     function handleTeamBtn() {
         if (inTeam) {
+            setTeamPopup(false)
             removeFromTeam(pokemon.id);
         } else {
             addToTeam(formatPokemon(pokemon));
+            setTeamPopup(true);
         }
     }
 
     return (
         <div className="outer-content-container">
+
+            {teamPopup && (
+                <Popup>{formatPokemonName(pokemon.name)} toegevoegd aan je team!</Popup>
+            )}
+
             <div className="inner-content-container">
 
                 <Button variant="text" className="detail-back-btn" onClick={() => navigate(-1)}>

@@ -21,22 +21,20 @@ function Navigation() {
                         <li><Link to="/pokedex">Pokédex</Link></li>
                         <li><Link to="/quiz">Quiz</Link></li>
                         <li><Link to="/team">Mijn Team</Link></li>
+                    </ul>
 
                         <div className="navbar-auth">
                             {isAuth ? (
                                 <>
-                                    <li><span className="navbar-username">Hoi, {user.email.split('@')[0]}!</span></li>
-                                    <li><Button variant="light" size="sm" onClick={logout}>Uitloggen</Button></li>
+                                    <span className="navbar-username">Hoi, {user.email.split('@')[0]}!</span>
+                                    <Button variant="light" size="sm" onClick={logout}>Uitloggen</Button>
                                 </>
                                 ) : (
                                 <>
-                                    <li><Link to="/login" className="btn btn--light btn--sm">Inloggen</Link></li>
-                                    <li><Link to="/register" className="btn btn--primary btn--sm">Registreren</Link></li>
-                                </>)
-                            }
-
+                                    <Link to="/login" className="btn btn--light btn--sm">Inloggen</Link>
+                                    <Link to="/register" className="btn btn--primary btn--sm">Registreren</Link>
+                                </>)}
                         </div>
-                    </ul>
                 </div>
             </nav>
     )

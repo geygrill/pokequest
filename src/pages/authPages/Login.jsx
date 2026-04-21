@@ -37,8 +37,7 @@ function Login() {
     }
 
     return (
-        <>
-            <div className="outer-content-container auth-page">
+            <main className="outer-content-container auth-page">
                 <div className="auth-card">
                     <Pokeball size="medium"/>
                     <h1>Inloggen</h1>
@@ -85,8 +84,7 @@ function Login() {
                         Nog geen account? <Link to="/register">Registreren</Link>
                     </p>
                 </div>
-            </div>
-        </>
+            </main>
     )
 }
 

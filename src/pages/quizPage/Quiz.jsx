@@ -85,7 +85,7 @@ function Quiz() {
         return (
             <div className="quiz-wrapper">
                 <p>Er ging iets mis bij het laden van de Pokémon. Probeer het opnieuw.</p>
-                <Button variant="outline" size="md" rounded onClick={() => loadNewPokemon(new AbortController())}>Opnieuw proberen</Button>
+                <Button variant="outline" size="md" rounded onClick={() => loadNewPokemon()}>Opnieuw proberen</Button>
             </div>
         );
     }

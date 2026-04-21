@@ -50,14 +50,15 @@ function Home() {
                         <div className="feature-card">
                             <div className="feature-icon"></div>
                             <h3>Mijn Pokédex</h3>
-                            <p>Bekijk alle Pokémon die je ooit goed hebt geraden. Filter op naam en beheer wie er in je team zit.</p>
+                            <p>Bekijk alle Pokémon die je ooit goed hebt geraden. Filter op naam en beheer welke pokémon er in je team zitten.</p>
                             <Link to="/search" className="feature-link">Open Pokédex →</Link>
                         </div>
 
                         <div className="feature-card">
                             <div className="feature-icon"></div>
                             <h3>Mijn Team</h3>
-                            <p>Kies je favoriete Pokémon en stel je perfecte team samen voor de ideale line-up.</p>                            <Link to="/team" className="feature-link">Mijn team →</Link>
+                            <p>Kies je favoriete Pokémon en stel je perfecte team samen voor de ideale line-up.</p>
+                            <Link to="/team" className="feature-link">Mijn team →</Link>
                         </div>
 
                     </div>

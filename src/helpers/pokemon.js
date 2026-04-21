@@ -41,8 +41,10 @@ export function formatPokemonName(name) {
         .join(' ');
 }
 
-export async function getPokemonSpecies(id) {
-    const response = await axios.get(`${POKE_BASE_URL}/pokemon-species/${id}`);
+export async function getPokemonSpecies(id, signal) {
+    const response = await axios.get(`${POKE_BASE_URL}/pokemon-species/${id}`, {
+        signal,
+    });
     return response.data;
 }
 

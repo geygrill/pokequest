@@ -14,30 +14,39 @@ function DetailPage() {
 
     const [pokemon, setPokemon] = useState(null);
     const [species, setSpecies] = useState(null);
-    const [loading, toggleLoading] = useState(true);
-    const [error, toggleError] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     const { getTeam, addToTeam, removeFromTeam } = useContext(PokemonContext);
 
-    async function loadPokemon() {
-        toggleLoading(true);
-        toggleError(false);
+    async function loadPokemon(controller) {
+        setLoading(true);
+        setError(false);
+
         try {
             const [pokemonData, speciesData] = await Promise.all([
-                getPokemon(id),
-                getPokemonSpecies(id),
+                getPokemon(id, controller.signal),
+                getPokemonSpecies(id, controller.signal),
             ]);
             setPokemon(pokemonData);
             setSpecies(speciesData);
-        } catch {
-            toggleError(true);
+        } catch (error) {
+            if (error.name === 'CanceledError') return;
+            setError(true);
         } finally {
-            toggleLoading(false);
+            if (!controller.signal.aborted) {
+                setLoading(false);
+            }
         }
     }
 
     useEffect(() => {
-        loadPokemon();
+        const controller = new AbortController();
+        loadPokemon(controller);
+
+        return () => {
+            controller.abort();
+        };
     }, [id]);
 
     if (loading) {

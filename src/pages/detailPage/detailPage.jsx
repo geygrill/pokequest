@@ -152,26 +152,28 @@ function DetailPage() {
                         </div>
                     </section>
 
-                    <section className="detail-right">
-                        <h2 className="detail-stats-title">Stats</h2>
+                    <section className="details-right">
+                        <section className="detail-right-section">
+                            <h2 className="detail-right-title">Base Stats</h2>
 
-                        <ul className="detail-stats">
-                            {pokemon.stats.map(s => (
-                                <li key={s.stat.name} className="stat-row">
-                                    <span className="stat-name">{s.stat.name}</span>
-                                    <span className="stat-value">{s.base_stat}</span>
-                                    <div className="stat-bar-bg">
-                                        <div
-                                            className="stat-bar-fill"
-                                            style={{ width: `${Math.min(s.base_stat / 255 * 100, 100)}%` }}
-                                        />
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
+                            <ul className="detail-stats">
+                                {pokemon.stats.map(s => (
+                                    <li key={s.stat.name} className="stat-row">
+                                        <span className="stat-name">{s.stat.name}</span>
+                                        <span className="stat-value">{s.base_stat}</span>
+                                        <div className="stat-bar-bg">
+                                            <div
+                                                className="stat-bar-fill"
+                                                style={{ width: `${Math.min(s.base_stat / 255 * 100, 100)}%` }}
+                                            />
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </section>
 
-                        <section className="detail-abilities-section">
-                            <h2 className="detail-stats-title">Abilities</h2>
+                        <section className="detail-right-section">
+                            <h2 className="detail-right-title">Abilities</h2>
 
                             <ul className="detail-abilities">
                                 {pokemon.abilities.map(a => (

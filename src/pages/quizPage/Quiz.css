@@ -1,0 +1,176 @@
+.quiz-wrapper {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 2rem;
+    align-items: center;
+    background-color: white;
+    position: relative;
+}
+
+.quiz-pokemon-bg-color {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    animation: type-aan 1.2s ease forwards;
+}
+
+@keyframes type-aan {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.quiz-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    position: relative;
+
+}
+
+.title-correct {
+    color: #16a34a;
+}
+.title-wrong {
+    color: var(--red);
+}
+
+.quiz-pokemon-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.quiz-pokemon-img {
+    width: min(55vh, 420px);
+    height: min(55vh, 420px);
+    object-fit: contain
+}
+
+.quiz-pokemon-img.silhouette {
+    filter: brightness(0);
+    animation:
+            pokemon-entree 0.65s cubic-bezier(0.3, 1.6, 0.7, 1) both,
+            pokemon-bounce 3.2s ease-in-out 0.7s infinite;
+}
+
+@keyframes pokemon-entree {
+    from { transform: translateY(80px) scale(0.4); opacity: 0; }
+    to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes pokemon-bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-20px); }
+}
+
+.quiz-form {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.quiz-input {
+    padding: 0.85rem 1.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 50px;
+    background: white;
+    color: var(--dark);
+    font-size: 1rem;
+    width: 300px;
+    text-align: center;
+    outline: none;
+    transition: all 0.2s;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-input::placeholder {
+    color: #9ca3af;
+}
+
+.quiz-input:focus {
+    border-color: var(--red);
+}
+
+.quiz-btn-guess,
+.quiz-btn-add-team {
+    background: var(--yellow);
+    color: var(--dark);
+    border-radius: 50px;
+    font-weight: 800;
+    transition: transform 0.15s, background 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.quiz-btn-guess {
+    padding: 0.85rem 1.75rem;
+    font-size: 1rem;
+}
+
+.quiz-btn-add-team {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+}
+
+.quiz-btn-guess:hover,
+.quiz-btn-add-team:hover {
+    background: #e6b800;
+    transform: scale(1.05);
+}
+
+.quiz-btn-next {
+    background: white;
+    color: var(--dark);
+    border: 2px solid #e5e7eb;
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-btn-next:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.quiz-bottom {
+    position: relative;
+}
+
+.quiz-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pokemon-types {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0.5rem 0;
+}
+
+.quiz-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.quiz-label-white {
+    color: var(--dark);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.quiz-wrong-guess {
+    color: var(--grey);
+    font-style: italic;
+    font-size: 0.9rem;
+}

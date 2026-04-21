@@ -2,6 +2,7 @@ import './Navigation.css'
 import {Link} from 'react-router-dom';
 import {useContext} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
+import Pokeball from "../pokeball/Pokeball.jsx";
 
 function Navigation() {
     const { isAuth, logout, user } = useContext(AuthContext);
@@ -11,7 +12,7 @@ function Navigation() {
                 <div className="inner-nav-container">
 
                     <Link to="/" className="navbar-logo">
-                        <span className="pokeball-icon" aria-hidden="true"></span>
+                        <Pokeball />
                         PokéQuest
                     </Link>
 

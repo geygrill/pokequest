@@ -75,22 +75,24 @@
 }
 
 /* =========================
-   FEATURE SECTION
+   POKEBALL DIVIDER
 ========================= */
 
 .pokeball-wrapper {
     display: flex;
     justify-content: center;
-}
-
-.pokeball-large {
-    top: -16px;
-    transform: scale(2.5); /* 32px → ~80px */
+    position: relative;
+    height: 0;
+    top: -40px;
 }
 
 /* =========================
    FEATURE SECTION
 ========================= */
+
+.features-section {
+    padding: 3rem 0;
+}
 
 .feature-title {
     font-size: 1.75rem;

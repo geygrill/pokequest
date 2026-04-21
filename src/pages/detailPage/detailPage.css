@@ -1,0 +1,201 @@
+.detail-back-btn {
+    align-self: flex-start;
+    color: var(--grey);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    transition: color 0.15s;
+}
+
+.detail-back-btn:hover {
+    color: var(--dark);
+}
+
+.detail-card {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-medium);
+    padding: 2rem;
+}
+
+.detail-left {
+    flex: 1 1 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.detail-number {
+    color: var(--grey);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: -0.5rem;
+}
+
+.detail-img {
+    width: 200px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+}
+
+.detail-name {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--dark);
+}
+
+
+.detail-description {
+    color: var(--grey);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 280px;
+}
+
+.detail-measurements {
+    display: flex;
+    gap: 2rem;
+    margin-top: 0.5rem;
+}
+
+.detail-measurement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.detail-measurement-label {
+    font-size: 0.75rem;
+    color: var(--grey);
+    text-transform: uppercase;
+}
+
+.detail-measurement-value {
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.detail-right {
+    flex: 1 1 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.detail-stats-title {
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+}
+
+.detail-stats + .detail-stats-title {
+    margin-top: 1.5rem;
+}
+
+.detail-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.stat-name {
+    font-size: 0.8rem;
+    color: var(--grey);
+    width: 110px;
+    flex-shrink: 0;
+}
+
+.stat-value {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--dark);
+    width: 32px;
+    text-align: right;
+}
+
+.stat-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+}
+
+.stat-bar-fill {
+    height: 100%;
+    background: var(--type-color);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+.detail-abilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.ability-badge {
+    background: #f3f4f6;
+    color: var(--dark);
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.ability-badge.ability-hidden {
+    background: #f0f0ff;
+    color: #6366f1;
+}
+
+.ability-hidden-label {
+    font-weight: 400;
+    font-size: 0.75rem;
+}
+
+.detail-team-action {
+    margin-top: auto;
+    padding-top: 1.5rem;
+}
+
+.detail-team-action .btn-add-team,
+.detail-team-action .btn-remove {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+.btn-add-team {
+    background: var(--yellow);
+    color: var(--dark);
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+
+.btn-add-team:hover:not(:disabled) {
+    background: #e6b800;
+    transform: translateY(-1px);
+}
+
+.btn-add-team:disabled {
+    background: #d1d5db;
+    color: #9ca3af;
+    cursor: not-allowed;
+}

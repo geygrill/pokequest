@@ -44,6 +44,18 @@ input {
     font-family: inherit;
 }
 
+a {
+    color: var(--red);
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+}
+
+
 html {
     overflow-y: scroll;
 }

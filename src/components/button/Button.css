@@ -1,0 +1,127 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    border-radius: 8px;
+}
+
+/* =========================
+        VARIANTS
+========================= */
+
+.btn--primary {
+    background: var(--yellow);
+    color: var(--dark);
+}
+.btn--primary:hover:not(:disabled) {
+    background: #e6b800;
+}
+.btn--primary:disabled {
+    background: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.btn--red {
+    background: var(--red);
+    color: white;
+}
+.btn--red:hover:not(:disabled) {
+    background: var(--dark-red);
+}
+
+.btn--remove {
+    background: var(--red);
+    color: white;
+}
+.btn--remove:hover:not(:disabled) {
+    background: var(--dark-red);
+}
+
+.btn--outline {
+    background: white;
+    color: var(--dark);
+    border: 2px solid #e5e7eb;
+}
+.btn--outline:hover:not(:disabled) {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.btn--text {
+    background: transparent;
+    color: var(--grey);
+}
+.btn--text:hover:not(:disabled) {
+    color: var(--dark);
+}
+
+.btn--light {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.btn--light:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.btn--secondary {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+.btn--secondary:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+/* =========================
+        HOVER EFFECTS
+========================= */
+
+.btn--hover-lift:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.btn--hover-scale:hover:not(:disabled) {
+    transform: scale(1.05);
+}
+
+/* =========================
+        MODIFIERS
+========================= */
+
+.btn--rounded {
+    border-radius: 50px;
+}
+
+.btn--full {
+    width: 100%;
+    text-align: center;
+}
+
+/* =========================
+        SIZES
+========================= */
+
+.btn--sm {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+}
+
+.btn--md {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+}
+
+.btn--lg {
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+    font-weight: 800;
+}

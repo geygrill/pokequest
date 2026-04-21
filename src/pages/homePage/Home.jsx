@@ -43,7 +43,7 @@ function Home() {
                         <div className="feature-card">
                             <div className="feature-icon"></div>
                             <h3>Wie is deze Pokémon?!</h3>
-                            <p>Zie een silhouet en raad welke Pokémon het is. Raad je het goed? Dan vang je hem en kun je hem toevoegen aan je team!</p>
+                            <p>Zie een silhouet en raad welke Pokémon het is. Raad je het goed? Dan kun je deze toevoegen aan je team!</p>
                             <Link to="/quiz" className="feature-link">Speel nu →</Link>
                         </div>
 

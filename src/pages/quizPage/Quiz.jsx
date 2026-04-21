@@ -76,18 +76,18 @@ function Quiz() {
 
     if (loading) {
         return (
-            <div className="quiz-wrapper">
+            <main className="quiz-wrapper">
                 <LoadingSpinner>Pokémon aan het laden...</LoadingSpinner>
-            </div>
+            </main>
         );
     }
 
     if (error) {
         return (
-            <div className="quiz-wrapper">
+            <main className="quiz-wrapper">
                 <p>Er ging iets mis bij het laden van de Pokémon. Probeer het opnieuw.</p>
                 <Button variant="outline" size="md" rounded onClick={() => loadNewPokemon()}>Opnieuw proberen</Button>
-            </div>
+            </main>
         );
     }
 
@@ -97,7 +97,7 @@ function Quiz() {
     const typeColor = pokemon ? getTypeColor(pokemon.types[0]) : '#6890F0';
 
     return (
-        <div className="quiz-wrapper">
+        <main className="quiz-wrapper">
 
             {isPokemonAdded && (
                 <Popup>{formatPokemonName(pokemon.name)} toegevoegd aan je team!</Popup>
@@ -195,7 +195,7 @@ function Quiz() {
                 )}
 
             </div>
-        </div>
+        </main>
     )
 }
 

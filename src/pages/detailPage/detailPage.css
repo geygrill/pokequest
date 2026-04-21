@@ -161,12 +161,12 @@
     font-size: 0.75rem;
 }
 
-.detail-team-action {
+.detail-team-btn {
     margin-top: auto;
     padding-top: 1.5rem;
 }
 
-.detail-team-action .btn {
+.detail-team-btn .btn {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
 }

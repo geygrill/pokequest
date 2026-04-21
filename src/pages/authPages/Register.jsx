@@ -38,7 +38,7 @@ function Register() {
     }
 
     return (
-        <div className="outer-content-container auth-page">
+        <main className="outer-content-container auth-page">
             <div className="auth-card">
                 <Pokeball size="medium" />
                 <h1>Account aanmaken</h1>
@@ -108,7 +108,7 @@ function Register() {
                     Al een account? <Link to="/login">Inloggen</Link>
                 </p>
             </div>
-        </div>
+        </main>
     )
 }
 

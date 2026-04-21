@@ -41,12 +41,9 @@ function Team() {
                                             ))}
                                         </div>
                                     </div>
-                                    <button
-                                        className="btn-remove"
-                                        onClick={() => handleRemove(pokemon.id)}
-                                    >
+                                    <Button variant="remove" size="sm" onClick={() => handleRemove(pokemon.id)}>
                                         Verwijderen
-                                    </button>
+                                    </Button>
                                 </div>
                             );
                         }

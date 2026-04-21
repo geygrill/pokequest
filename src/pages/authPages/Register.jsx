@@ -5,6 +5,7 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage.jsx";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/button/Button.jsx";
 
 function Register() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -98,9 +99,9 @@ function Register() {
 
                     {error && <ErrorMessage>Registreren mislukt.</ErrorMessage>}
 
-                    <button type="submit" className="btn-submit">
-                        Acount aanmaken
-                    </button>
+                    <Button type="submit" variant="red" fullWidth>
+                        Account aanmaken
+                    </Button>
                 </form>
 
                 <p className="auth-page-switch">

@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form';
 import ErrorMessage from "../../components/errorMessage/ErrorMessage.jsx";
 import Pokeball from "../../components/pokeball/Pokeball.jsx";
 import {Link} from "react-router-dom";
+import Button from "../../components/button/Button.jsx";
+
 
 function Login() {
     const { login } = useContext(AuthContext);
@@ -74,9 +76,9 @@ function Login() {
 
                         {error && <ErrorMessage>Inloggen mislukt. Controleer je e-mailadres en wachtwoord.</ErrorMessage>}
 
-                        <button type="submit" className="btn-submit">
+                        <Button type="submit" variant="red" fullWidth>
                             Inloggen
-                        </button>
+                        </Button>
                     </form>
 
                     <p className="auth-page-switch">

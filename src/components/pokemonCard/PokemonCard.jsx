@@ -2,6 +2,7 @@ import './PokemonCard.css';
 import { Link } from 'react-router-dom';
 import {formatPokemonName, getTypeColor} from '../../helpers/pokemon.js';
 import TypeBadge from '../typeBadge/TypeBadge';
+import Button from "../button/Button.jsx";
 
 function PokemonCard({ pokemon, inTeam, teamIsFull, handleAdd, handleRemove }) {
     const typeColor = getTypeColor(pokemon.types[0]);
@@ -31,17 +32,13 @@ function PokemonCard({ pokemon, inTeam, teamIsFull, handleAdd, handleRemove }) {
                 </div>
 
                 {inTeam ? (
-                    <button onClick={() => handleRemove(pokemon.id)} className="btn-remove">
+                    <Button variant="remove" size="sm" fullWidth onClick={() => handleRemove(pokemon.id)}>
                         Uit team verwijderen
-                    </button>
+                    </Button>
                 ) : (
-                    <button
-                        onClick={() => handleAdd(pokemon)}
-                        disabled={teamIsFull}
-                        className="pokemon-card-btn add"
-                    >
+                    <Button variant="primary" size="sm" fullWidth onClick={() => handleAdd(pokemon)} disabled={teamIsFull}>
                         {teamIsFull ? 'Team vol' : 'Aan team toevoegen'}
-                    </button>
+                    </Button>
                 )}
             </div>
 

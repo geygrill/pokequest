@@ -19,13 +19,13 @@ function Home() {
                     <div className="intro-buttons">
                         {isAuth ? (
                             <>
-                                <Link to="/quiz" className="btn-intro-primary">Speel de Quiz</Link>
-                                <Link to="/team" className="btn-intro-secondary">Mijn Team</Link>
+                                <Link to="/quiz" className="btn btn--primary btn--lg btn--hover-lift">Speel de Quiz</Link>
+                                <Link to="/team" className="btn btn--secondary btn--lg">Mijn Team</Link>
                             </>
                         ) : (
                             <>
-                                <Link to="/register" className="btn-intro-primary">Maak een account</Link>
-                                <Link to="/login" className="btn-intro-secondary">Inloggen</Link>
+                                <Link to="/register" className="btn btn--primary btn--lg btn--hover-lift">Maak een account</Link>
+                                <Link to="/login" className="btn btn--secondary btn--lg">Inloggen</Link>
                             </>
                         )}
                     </div>

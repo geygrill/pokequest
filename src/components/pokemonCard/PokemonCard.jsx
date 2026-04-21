@@ -1,6 +1,6 @@
 import './PokemonCard.css';
 import { Link } from 'react-router-dom';
-import { getTypeColor } from '../../helpers/pokemon.js';
+import {formatPokemonName, getTypeColor} from '../../helpers/pokemon.js';
 import TypeBadge from '../typeBadge/TypeBadge';
 
 function PokemonCard({ pokemon, inTeam, teamIsFull, handleAdd, handleRemove }) {
@@ -17,13 +17,13 @@ function PokemonCard({ pokemon, inTeam, teamIsFull, handleAdd, handleRemove }) {
                 <span className="pokemon-card-number">#{String(pokemon.id).padStart(3, '0')}</span>
                 <img
                     src={pokemon.sprite}
-                    alt={pokemon.name}
+                    alt={formatPokemonName(pokemon.name)}
                     className="pokemon-card-img"
                 />
             </Link>
 
             <div className="pokemon-card-footer">
-                <p className="pokemon-card-name">{pokemon.name}</p>
+                <p className="pokemon-card-name">{formatPokemonName(pokemon.name)}</p>
                 <div className="pokemon-types">
                     {pokemon.types.map(type => (
                         <TypeBadge key={type} type={type} />

@@ -1,7 +1,7 @@
 import './Pokedex.css'
 import {useContext, useEffect, useState} from "react";
 import {PokemonContext} from "../../context/PokemonContext.jsx";
-import {getPokemonTypes} from "../../helpers/pokemon.js";
+import {formatPokemonName, getPokemonTypes} from "../../helpers/pokemon.js";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner.jsx";
 import {Link} from "react-router-dom";
 import PokemonCard from "../../components/pokemonCard/PokemonCard.jsx";
@@ -31,7 +31,7 @@ function Pokedex() {
 
     const filtered = caught
         .filter(p =>
-            p.name.toLowerCase().includes(filter.toLowerCase()) &&
+            formatPokemonName(p.name).toLowerCase().includes(filter.toLowerCase()) &&
             (!typeFilter || p.types.includes(typeFilter))
         )
         .sort((a, b) => a.id - b.id);

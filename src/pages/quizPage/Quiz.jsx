@@ -128,7 +128,7 @@ function Quiz() {
 
             <div className="quiz-pokemon-wrapper">
                 <img
-                    key={`${pokemon.id}-${status}`}
+                    key={`${pokemon.dbId}-${status}`}
                     src={pokemon.sprite}
                     alt={status === 'playing' ? 'Wie is deze Pokémon?' : pokemon.name}
                     className={`quiz-pokemon-img ${status === 'playing' ? 'silhouette' : 'revealed'}`}

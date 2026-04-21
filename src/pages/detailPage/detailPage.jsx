@@ -17,7 +17,7 @@ function DetailPage() {
     const [species, setSpecies] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [teamPopup, setTeamPopup] = useState(false);
+    const [popup, setPopup] = useState(false);
 
 
     const { getTeam, addToTeam, removeFromTeam } = useContext(PokemonContext);
@@ -52,6 +52,16 @@ function DetailPage() {
         };
     }, [id]);
 
+    useEffect(() => {
+        if (!popup) return;
+
+        const timer = setTimeout(() => {
+            setPopup(false);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [popup]);
+
     if (loading) {
         return (
             <div className="outer-content-container">
@@ -85,19 +95,20 @@ function DetailPage() {
 
     function handleTeamBtn() {
         if (inTeam) {
-            setTeamPopup(false)
             removeFromTeam(pokemon.id);
         } else {
             addToTeam(formatPokemon(pokemon));
-            setTeamPopup(true);
+            setPopup(true);
         }
     }
 
     return (
         <div className="outer-content-container">
 
-            {teamPopup && (
-                <Popup>{formatPokemonName(pokemon.name)} toegevoegd aan je team!</Popup>
+            {popup && pokemon && (
+                <Popup>
+                    {formatPokemonName(pokemon.name)} toegevoegd aan je team!
+                </Popup>
             )}
 
             <div className="inner-content-container">
@@ -144,7 +155,7 @@ function DetailPage() {
                         <div className="detail-stats">
                             {pokemon.stats.map(s => (
                                 <div key={s.stat.name} className="stat-row">
-                                    <span className="stat-name">{s.stat.name ?? s.stat.name}</span>
+                                    <span className="stat-name">{s.stat.name}</span>
                                     <span className="stat-value">{s.base_stat}</span>
                                     <div className="stat-bar-bg">
                                         <div

@@ -5,6 +5,7 @@ import Pokeball from "../../components/pokeball/Pokeball.jsx";
 import {PokemonContext} from "../../context/PokemonContext.jsx";
 import {Link} from "react-router-dom";
 import {formatPokemonName} from "../../helpers/pokemon.js";
+import Button from "../../components/button/Button.jsx";
 
 function Team() {
     const { getTeam, removeFromTeam } = useContext(PokemonContext);

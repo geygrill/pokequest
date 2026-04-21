@@ -49,7 +49,7 @@ function Home() {
                         <li className="feature-card">
                             <h3>Mijn Pokédex</h3>
                             <p>Bekijk alle Pokémon die je ooit goed hebt geraden. Filter op naam en beheer welke pokémon er in je team zitten.</p>
-                            <Link to="/search" className="feature-link">Open Pokédex →</Link>
+                            <Link to="/pokedex" className="feature-link">Open Pokédex →</Link>
                         </li>
 
                         <li className="feature-card">

@@ -36,31 +36,31 @@ function Home() {
                 <Pokeball size="large" />
             </div>
 
-            <section className="outer-content-container features-section">
+            <main className="outer-content-container features-section">
                 <div className="inner-content-container">
                     <h2 className="feature-title">Wat kun je doen?</h2>
-                    <div className="feature-cards">
-                        <div className="feature-card">
+                    <ul className="feature-cards">
+                        <li className="feature-card">
                             <h3>Wie is deze Pokémon?!</h3>
                             <p>Zie een silhouet en raad welke Pokémon het is. Raad je het goed? Dan kun je deze toevoegen aan je team!</p>
                             <Link to="/quiz" className="feature-link">Speel nu →</Link>
-                        </div>
+                        </li>
 
-                        <div className="feature-card">
+                        <li className="feature-card">
                             <h3>Mijn Pokédex</h3>
                             <p>Bekijk alle Pokémon die je ooit goed hebt geraden. Filter op naam en beheer welke pokémon er in je team zitten.</p>
                             <Link to="/search" className="feature-link">Open Pokédex →</Link>
-                        </div>
+                        </li>
 
-                        <div className="feature-card">
+                        <li className="feature-card">
                             <h3>Mijn Team</h3>
                             <p>Kies je favoriete Pokémon en stel je perfecte team samen voor de ideale line-up.</p>
                             <Link to="/team" className="feature-link">Mijn team →</Link>
-                        </div>
+                        </li>
 
-                    </div>
+                    </ul>
                 </div>
-            </section>
+            </main>
         </>
     )
 }

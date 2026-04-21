@@ -67,8 +67,8 @@
 }
 
 .btn-remove {
-    background: transparent;
-    color: var(--red);
+    background: var(--red);
+    color: white;
     border: 1px solid var(--red);
     padding: 0.3rem 0.75rem;
     border-radius: 6px;
@@ -77,7 +77,7 @@
 }
 
 .btn-remove:hover {
-    background: var(--red);
+    background: #cc0000;
     color: white;
 }
 

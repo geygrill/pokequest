@@ -1,12 +1,10 @@
 .inner-nav-container {
-    flex-basis: 1400px;
-    flex-shrink: 1;
-    flex-grow: 0;
     margin: 0 1.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .main-navigation {
@@ -17,6 +15,9 @@
     z-index: 100;
     box-shadow: var(--shadow-medium);
     height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .navbar-logo {
@@ -40,15 +41,14 @@
     justify-content: space-between;
 }
 
-.main-navigation-links a {
+.main-navigation-links > li > a {
     color: white;
-    text-decoration: none;
     font-weight: 500;
     opacity: 0.9;
     transition: all 0.2s;
 }
 
-.main-navigation-links a:hover {
+.main-navigation-links   > li > a:hover {
     opacity: 1;
 }
 
@@ -65,8 +65,10 @@
 }
 
 .btn-login {
+    color: white;
     border: 1px solid rgba(255, 255, 255, 0.5);
     padding: 0.4rem 0.9rem;
+    transition: background 0.2s;
     border-radius: 6px;
     font-size: 0.875rem;
 }

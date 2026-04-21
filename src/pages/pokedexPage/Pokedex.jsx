@@ -1,7 +1,7 @@
 import './Pokedex.css'
 import {useContext, useEffect, useState} from "react";
 import {PokemonContext} from "../../context/PokemonContext.jsx";
-import {formatPokemonName, getPokemonTypes} from "../../helpers/pokemon.js";
+import {formatPokemonName, getPokemonTypes, getTypeColor} from "../../helpers/pokemon.js";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner.jsx";
 import {Link} from "react-router-dom";
 import PokemonCard from "../../components/pokemonCard/PokemonCard.jsx";
@@ -84,6 +84,7 @@ function Pokedex() {
                                 {availableTypes.map(type => (
                                     <button
                                         key={type}
+                                        style={{ '--type-color': getTypeColor(type) }}
                                         className={`type-filter-btn ${typeFilter === type ? 'active' : ''}`}
                                         onClick={() => setTypeFilter(type)}
                                     >

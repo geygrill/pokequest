@@ -57,8 +57,7 @@ function Home() {
                         <div className="feature-card">
                             <div className="feature-icon"></div>
                             <h3>Mijn Team</h3>
-                            <p>Bouw je eigen team van maximaal 6 Pokémon. Wissel, verwijder en stel de perfecte lineup samen!</p>
-                            <Link to="/team" className="feature-link">Mijn team →</Link>
+                            <p>Kies je favoriete Pokémon en stel je perfecte team samen voor de ideale line-up.</p>                            <Link to="/team" className="feature-link">Mijn team →</Link>
                         </div>
 
                     </div>

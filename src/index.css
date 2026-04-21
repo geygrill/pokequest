@@ -54,3 +54,13 @@ button {
     font-family: inherit;
     border: none;
 }
+
+
+html {
+    overflow-y: scroll;
+}
+
+
+* {
+    scrollbar-width: thin;
+}

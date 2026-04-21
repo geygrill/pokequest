@@ -10,6 +10,7 @@ import NotFound from "./pages/notFoundPage/NotFound.jsx";
 import Navigation from "./components/navigation/Navigation.jsx";
 import {useContext} from "react";
 import {AuthContext} from "./context/AuthContext.jsx";
+import DetailPage from "./pages/detailPage/detailPage.jsx";
 
 
 function App() {
@@ -22,11 +23,14 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/pokedex" element={ isAuth ? <Pokedex/> : <Navigate to="/login"/>}/>
                 <Route path="/register" element={<Register/>}/>
+                <Route path="*" element={<NotFound/>}/>
+
+                <Route path="/pokedex" element={ isAuth ? <Pokedex/> : <Navigate to="/login"/>}/>
                 <Route path="/quiz" element={ isAuth ? <Quiz/> : <Navigate to="/login"/>}/>
                 <Route path="/team" element={ isAuth ? <Team/> : <Navigate to="/login"/>}/>
-                <Route path="*" element={<NotFound/>}/>
+
+                <Route path="/pokemon/:id" element={<DetailPage />} />
             </Routes>
         </main>
 

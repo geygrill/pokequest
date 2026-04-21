@@ -64,7 +64,7 @@
 
 .btn--light {
     background: rgba(255, 255, 255, 0.15);
-    color: white;
+    color: var(--white);
     border: 1px solid rgba(255, 255, 255, 0.4);
 }
 .btn--light:hover:not(:disabled) {
@@ -73,7 +73,7 @@
 
 .btn--secondary {
     background: rgba(255, 255, 255, 0.15);
-    color: white;
+    color: var(--white);
     border: 2px solid rgba(255, 255, 255, 0.4);
 }
 .btn--secondary:hover:not(:disabled) {

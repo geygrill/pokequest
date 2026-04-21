@@ -21,7 +21,7 @@
 
 .team-slot {
     flex: 1 1 250px;
-    background: white;
+    background: var(--white);
     border-radius: 8px;
     padding: 1.5rem;
     box-shadow: var(--shadow-small);
@@ -73,7 +73,7 @@
 }
 .team-slot .btn--remove:hover {
     background: var(--red);
-    color: white;
+    color: var(--white);
 }
 
 

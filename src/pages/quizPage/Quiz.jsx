@@ -5,6 +5,7 @@ import {formatPokemon, formatPokemonName, getPokemon, getTypeColor} from "../../
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner.jsx";
 import {PokemonContext} from "../../context/PokemonContext.jsx";
 import Button from "../../components/button/Button.jsx";
+import Popup from "../../components/popup/Popup.jsx";
 
 function normalizeName(name) {
     return name.toLowerCase().trim();
@@ -98,6 +99,10 @@ function Quiz() {
     return (
         <div className="quiz-wrapper">
 
+            {isPokemonAdded && (
+                <Popup>{formatPokemonName(pokemon.name)} toegevoegd aan je team!</Popup>
+            )}
+
             {status !== 'playing' && (
                 <div
                     className="quiz-pokemon-bg-color"
@@ -160,8 +165,13 @@ function Quiz() {
                                     {isPokemonAdded ? '✓ Toegevoegd' : '+ Aan team toevoegen'}
                                 </Button>
                             )}
-                            {teamIsFull && !isPokemonAdded && <span className="quiz-label-white">Team is vol!</span>}
-                            {isInTeam && <span className="quiz-label-white">✓ Al in je team</span>}
+                            {isInTeam && !isPokemonAdded && (
+                                <span className="quiz-label-white">✓ Al in je team</span>
+                            )}
+
+                            {!isInTeam && teamIsFull && (
+                                <span className="quiz-label-white">Team is vol!</span>
+                            )}
 
                             <Button variant="outline" size="sm" rounded onClick={() => loadNewPokemon()}>
                                 Volgende →

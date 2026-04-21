@@ -65,7 +65,7 @@ function Team() {
                     )}
                     {team.length < 6 && (
                         <p className="team-message-link">
-                            Selecteer pokémon uit je <Link to="/search">Pokédex</Link> om je team samen te stellen.
+                            Selecteer pokémon uit je <Link to="/pokedex">Pokédex</Link> om je team samen te stellen.
                         </p>
                     )}
                 </div>

@@ -1,0 +1,101 @@
+.pokemon-card {
+    flex: 0 1 165px;
+    background: white;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.pokemon-card:hover {
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--type-color) 45%, transparent);
+    transform: translateY(-5px);
+}
+
+.pokemon-card.in-team {
+    border-color: var(--red);
+}
+
+.pokemon-card-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 0.75rem 0;
+    border-radius: 10.5px 10.5px 0 0;
+}
+
+.pokemon-card-number {
+    align-self: flex-end;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.pokemon-card-img {
+    width: 110px;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+    transition: all 0.4s;
+    margin-bottom: -10px;
+}
+
+.pokemon-card:hover .pokemon-card-img {
+    transform: scale(1.15) translateY(-7px);
+}
+
+.pokemon-card-footer {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.pokemon-card-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: var(--dark);
+}
+
+.pokemon-card-btn {
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.35rem;
+    border-radius: 8px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+
+.pokemon-card-btn.add {
+    background: var(--yellow);
+    color: var(--dark);
+}
+
+.pokemon-card-btn.add:hover:not(:disabled) {
+    background: #e6b800;
+}
+
+.pokemon-card-btn.add:disabled {
+    background: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.pokemon-card-btn.remove {
+    background: transparent;
+    color: var(--red);
+    border: 1.5px solid var(--red);
+}
+
+.pokemon-card-btn.remove:hover {
+    background: var(--red);
+    color: white;
+}
+
+.pokemon-card .btn-remove {
+    width: 100%;
+    font-size: 0.65rem;
+    padding: 0.35rem;
+    margin-top: 0.25rem;
+    border-radius: 8px;
+ }

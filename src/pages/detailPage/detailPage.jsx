@@ -20,7 +20,7 @@ function DetailPage() {
     const [popup, setPopup] = useState(false);
 
 
-    const { getTeam, addToTeam, removeFromTeam } = useContext(PokemonContext);
+    const { getTeam, addToTeam, removeFromTeam, teamLoading } = useContext(PokemonContext);
 
     async function loadPokemon(controller) {
         setPopup(false)
@@ -184,17 +184,19 @@ function DetailPage() {
                             </ul>
                         </section>
 
-                        <div className="detail-team-btn">
-                            {inTeam ? (
-                                <Button variant="remove" fullWidth onClick={handleTeamBtn}>
-                                    Uit team verwijderen
-                                </Button>
-                            ) : (
-                                <Button variant="primary" fullWidth disabled={teamIsFull} onClick={handleTeamBtn}>
-                                    {teamIsFull ? 'Team is vol (6/6)' : 'Aan team toevoegen'}
-                                </Button>
-                            )}
-                        </div>
+                        {!teamLoading && (
+                            <div className="detail-team-btn">
+                               {inTeam ? (
+                                   <Button variant="remove" fullWidth onClick={handleTeamBtn}>
+                                      Uit team verwijderen
+                                   </Button>
+                               ) : (
+                                   <Button variant="primary" fullWidth disabled={teamIsFull} onClick={handleTeamBtn}>
+                                      {teamIsFull ? 'Team is vol (6/6)' : 'Aan team toevoegen'}
+                                   </Button>
+                               )}
+                            </div>
+                        )}
                     </section>
                 </article>
             </div>

@@ -70,15 +70,6 @@ function DetailPage() {
         ?.flavor_text
         ?.replace(/[\f\n\r]/g, ' ') ?? '';
 
-    const statNames = {
-        hp: 'HP',
-        attack: 'Aanval',
-        defense: 'Verdediging',
-        'special-attack': 'Sp. Aanval',
-        'special-defense': 'Sp. Verdediging',
-        speed: 'Snelheid',
-    };
-
     function handleTeamBtn() {
         if (inTeam) {
             removeFromTeam(pokemon.id);
@@ -133,7 +124,7 @@ function DetailPage() {
                         <div className="detail-stats">
                             {pokemon.stats.map(s => (
                                 <div key={s.stat.name} className="stat-row">
-                                    <span className="stat-name">{statNames[s.stat.name] ?? s.stat.name}</span>
+                                    <span className="stat-name">{s.stat.name ?? s.stat.name}</span>
                                     <span className="stat-value">{s.base_stat}</span>
                                     <div className="stat-bar-bg">
                                         <div

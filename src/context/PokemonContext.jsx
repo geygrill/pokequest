@@ -8,6 +8,8 @@ function PokemonContextProvider({ children }) {
     const { user, isAuth } = useContext(AuthContext);
     const [caught, setCaught] = useState([]);
     const [team, setTeam] = useState([]);
+    const [teamLoading, setTeamLoading] = useState(true);
+
     const token = localStorage.getItem("token");
 
     useEffect(() => {
@@ -20,6 +22,7 @@ function PokemonContextProvider({ children }) {
     }, [isAuth, user, token]);
 
     async function loadPokemonData(token, userId) {
+        setTeamLoading(true);
         try {
             const [caughtData, teamData] = await Promise.all([
                 getCaught(token, userId),
@@ -48,6 +51,8 @@ function PokemonContextProvider({ children }) {
             setTeam(await format(teamData));
         } catch (e) {
             console.error('Fout bij laden pokemon data:', e);
+        } finally {
+            setTeamLoading(false);
         }
     }
 
@@ -115,6 +120,7 @@ function PokemonContextProvider({ children }) {
             removeFromTeam,
             getCaughtPokemon,
             addToCaught,
+            teamLoading,
         }}>
             {children}
         </PokemonContext.Provider>

@@ -50,7 +50,7 @@ function Team() {
                         }
 
                         return (
-                            <div key={index} className="team-slot empty">
+                            <div key={`empty-${index}`} className="team-slot empty">
                                 <Pokeball className="team-empty-pokeball" />
                                 <p>Leeg</p>
                             </div>

@@ -12,7 +12,7 @@ function PokemonCard({ pokemon, inTeam, teamIsFull, handleAdd, handleRemove }) {
         : typeColor;
 
     return (
-        <div className={`pokemon-card ${inTeam ? 'in-team' : ''}`} style={{ '--type-color': typeColor }}>
+        <article className={`pokemon-card ${inTeam ? 'in-team' : ''}`} style={{ '--type-color': typeColor }}>
 
             <Link to={`/pokemon/${pokemon.id}`} className="pokemon-card-top" style={{ background }}>
                 <span className="pokemon-card-number">#{String(pokemon.id).padStart(3, '0')}</span>
@@ -24,12 +24,14 @@ function PokemonCard({ pokemon, inTeam, teamIsFull, handleAdd, handleRemove }) {
             </Link>
 
             <div className="pokemon-card-footer">
-                <p className="pokemon-card-name">{formatPokemonName(pokemon.name)}</p>
-                <div className="pokemon-types">
+                <h2 className="pokemon-card-name">{formatPokemonName(pokemon.name)}</h2>
+                <ul className="pokemon-types">
                     {pokemon.types.map(type => (
-                        <TypeBadge key={type} type={type} />
+                        <li key={type}>
+                            <TypeBadge type={type} />
+                        </li>
                     ))}
-                </div>
+                </ul>
 
                 {inTeam ? (
                     <Button variant="remove" size="sm" fullWidth onClick={() => handleRemove(pokemon.id)}>
@@ -42,7 +44,7 @@ function PokemonCard({ pokemon, inTeam, teamIsFull, handleAdd, handleRemove }) {
                 )}
             </div>
 
-        </div>
+        </article>
     );
 }
 

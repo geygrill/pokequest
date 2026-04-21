@@ -1,0 +1,44 @@
+.popup {
+    position: fixed;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(22, 163, 74, 0.85);
+    backdrop-filter: blur(8px);
+    color: var(--white);
+    padding: 0.85rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 24px rgba(22, 163, 74, 0.4);
+    z-index: 1;
+    white-space: nowrap;
+    animation:
+            popup-in 0.35s cubic-bezier(0.3, 1.6, 0.7, 1) forwards,
+            popup-out 0.3s ease 1.5s forwards;
+}
+
+@keyframes popup-in {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes popup-out {
+    from {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+}

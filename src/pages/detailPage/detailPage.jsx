@@ -7,6 +7,7 @@ import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner';
 import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 import './detailPage.css';
 import Button from "../../components/button/Button.jsx";
+import Popup from "../../components/popup/Popup.jsx";
 
 function DetailPage() {
     const { id } = useParams();
@@ -14,49 +15,71 @@ function DetailPage() {
 
     const [pokemon, setPokemon] = useState(null);
     const [species, setSpecies] = useState(null);
-    const [loading, toggleLoading] = useState(true);
-    const [error, toggleError] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [popup, setPopup] = useState(false);
 
-    const { getTeam, addToTeam, removeFromTeam } = useContext(PokemonContext);
 
-    async function loadPokemon() {
-        toggleLoading(true);
-        toggleError(false);
+    const { getTeam, addToTeam, removeFromTeam, teamLoading } = useContext(PokemonContext);
+
+    async function loadPokemon(controller) {
+        setPopup(false)
+        setLoading(true);
+        setError(false);
+
         try {
             const [pokemonData, speciesData] = await Promise.all([
-                getPokemon(id),
-                getPokemonSpecies(id),
+                getPokemon(id, controller.signal),
+                getPokemonSpecies(id, controller.signal),
             ]);
             setPokemon(pokemonData);
             setSpecies(speciesData);
-        } catch {
-            toggleError(true);
+        } catch (error) {
+            if (error.name === 'CanceledError') return;
+            setError(true);
         } finally {
-            toggleLoading(false);
+            if (!controller?.signal?.aborted) {
+                setLoading(false);
+            }
         }
     }
 
     useEffect(() => {
-        loadPokemon();
+        const controller = new AbortController();
+        loadPokemon(controller);
+
+        return () => {
+            controller.abort();
+        };
     }, [id]);
+
+    useEffect(() => {
+        if (!popup) return;
+
+        const timer = setTimeout(() => {
+            setPopup(false);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [popup]);
 
     if (loading) {
         return (
-            <div className="outer-content-container">
+            <main className="outer-content-container">
                 <div className="inner-content-container">
                     <LoadingSpinner>Pokémon aan het laden...</LoadingSpinner>
                 </div>
-            </div>
+            </main>
         );
     }
 
     if (error) {
         return (
-            <div className="outer-content-container">
+            <main className="outer-content-container">
                 <div className="inner-content-container">
                     <ErrorMessage>Kon deze Pokémon niet laden. Probeer het opnieuw.</ErrorMessage>
                 </div>
-            </div>
+            </main>
         );
     }
 
@@ -76,20 +99,27 @@ function DetailPage() {
             removeFromTeam(pokemon.id);
         } else {
             addToTeam(formatPokemon(pokemon));
+            setPopup(true);
         }
     }
 
     return (
-        <div className="outer-content-container">
+        <main className="outer-content-container">
+
+            {popup && pokemon && (
+                <Popup>
+                    {formatPokemonName(pokemon.name)} toegevoegd aan je team!
+                </Popup>
+            )}
+
             <div className="inner-content-container">
 
                 <Button variant="text" className="detail-back-btn" onClick={() => navigate(-1)}>
                     ← Terug
                 </Button>
 
-                <div className="detail-card" style={{ '--type-color': typeColor }}>
-
-                    <div className="detail-left">
+                <article className="detail-card" style={{ '--type-color': typeColor }}>
+                    <section className="detail-left">
                         <img
                             src={pokemon.sprites.other['official-artwork'].front_default}
                             alt={formatPokemonName(pokemon.name)}
@@ -98,11 +128,13 @@ function DetailPage() {
                         <h1 className="detail-name">{formatPokemonName(pokemon.name)}</h1>
                         <p className="detail-number">#{String(pokemon.id).padStart(3, '0')}</p>
 
-                        <div className="pokemon-types">
+                        <ul className="pokemon-types">
                             {types.map(type => (
-                                <TypeBadge key={type} type={type} />
+                                <li key={type}>
+                                    <TypeBadge type={type} />
+                                </li>
                             ))}
-                        </div>
+                        </ul>
 
                         {description && (
                             <p className="detail-description">{description}</p>
@@ -118,49 +150,59 @@ function DetailPage() {
                                 <span className="detail-measurement-value">{(pokemon.weight / 10).toFixed(1)} kg</span>
                             </div>
                         </div>
-                    </div>
+                    </section>
 
-                    <div className="detail-right">
-                        <h2 className="detail-stats-title">Stats</h2>
-                        <div className="detail-stats">
-                            {pokemon.stats.map(s => (
-                                <div key={s.stat.name} className="stat-row">
-                                    <span className="stat-name">{s.stat.name ?? s.stat.name}</span>
-                                    <span className="stat-value">{s.base_stat}</span>
-                                    <div className="stat-bar-bg">
-                                        <div
-                                            className="stat-bar-fill"
-                                            style={{ width: `${Math.min(s.base_stat / 255 * 100, 100)}%` }}
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                    <section className="details-right">
+                        <section className="detail-right-section">
+                            <h2 className="detail-right-title">Base Stats</h2>
 
-                        <h2 className="detail-stats-title">Abilities</h2>
-                        <div className="detail-abilities">
-                            {pokemon.abilities.map(a => (
-                                <span key={a.ability.name} className={`ability-badge ${a.is_hidden ? 'ability-hidden' : ''}`}>
-                                    {a.ability.name}
-                                </span>
-                            ))}
-                        </div>
+                            <ul className="detail-stats">
+                                {pokemon.stats.map(s => (
+                                    <li key={s.stat.name} className="stat-row">
+                                        <span className="stat-name">{s.stat.name}</span>
+                                        <span className="stat-value">{s.base_stat}</span>
+                                        <div className="stat-bar-bg">
+                                            <div
+                                                className="stat-bar-fill"
+                                                style={{ width: `${Math.min(s.base_stat / 255 * 100, 100)}%` }}
+                                            />
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </section>
 
-                        <div className="detail-team-action">
-                            {inTeam ? (
-                                <Button variant="remove" fullWidth onClick={handleTeamBtn}>
-                                    Uit team verwijderen
-                                </Button>
-                            ) : (
-                                <Button variant="primary" fullWidth disabled={teamIsFull} onClick={handleTeamBtn}>
-                                    {teamIsFull ? 'Team is vol (6/6)' : 'Aan team toevoegen'}
-                                </Button>
-                            )}
-                        </div>
-                    </div>
-                </div>
+                        <section className="detail-right-section">
+                            <h2 className="detail-right-title">Abilities</h2>
+
+                            <ul className="detail-abilities">
+                                {pokemon.abilities.map(a => (
+                                    <li key={a.ability.name}>
+                                        <span className={`ability-badge ${a.is_hidden ? 'ability-hidden' : ''}`}>
+                                            {a.ability.name}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </section>
+
+                        {!teamLoading && (
+                            <div className="detail-team-btn">
+                               {inTeam ? (
+                                   <Button variant="remove" fullWidth onClick={handleTeamBtn}>
+                                      Uit team verwijderen
+                                   </Button>
+                               ) : (
+                                   <Button variant="primary" fullWidth disabled={teamIsFull} onClick={handleTeamBtn}>
+                                      {teamIsFull ? 'Team is vol (6/6)' : 'Aan team toevoegen'}
+                                   </Button>
+                               )}
+                            </div>
+                        )}
+                    </section>
+                </article>
             </div>
-        </div>
+        </main>
     );
 }
 

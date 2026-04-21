@@ -5,6 +5,7 @@ import {formatPokemon, formatPokemonName, getPokemon, getTypeColor} from "../../
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner.jsx";
 import {PokemonContext} from "../../context/PokemonContext.jsx";
 import Button from "../../components/button/Button.jsx";
+import Popup from "../../components/popup/Popup.jsx";
 
 function normalizeName(name) {
     return name.toLowerCase().trim();
@@ -31,20 +32,29 @@ function Quiz() {
     }
 
     useEffect(() => {
-        loadNewPokemon();
+        const controller = new AbortController();
+
+        loadNewPokemon(controller);
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
-    async function loadNewPokemon() {
-        resetGame();
+    async function loadNewPokemon(controller) {
+        resetGame()
         try {
             const id = Math.floor(Math.random() * 151) + 1;
-            const data = await getPokemon(id);
+            const data = await getPokemon(id, controller?.signal);
             setPokemon(formatPokemon(data));
         } catch(error) {
+            if (error.name === 'CanceledError') return;
             console.error(error);
             setError(true);
         } finally {
-            setLoading(false);
+            if (!controller?.signal?.aborted) {
+                setLoading(false);
+            }
         }
     }
 
@@ -66,18 +76,18 @@ function Quiz() {
 
     if (loading) {
         return (
-            <div className="quiz-wrapper">
+            <main className="quiz-wrapper">
                 <LoadingSpinner>Pokémon aan het laden...</LoadingSpinner>
-            </div>
+            </main>
         );
     }
 
     if (error) {
         return (
-            <div className="quiz-wrapper">
+            <main className="quiz-wrapper">
                 <p>Er ging iets mis bij het laden van de Pokémon. Probeer het opnieuw.</p>
-                <Button variant="outline" size="md" rounded onClick={loadNewPokemon}>Opnieuw proberen</Button>
-            </div>
+                <Button variant="outline" size="md" rounded onClick={() => loadNewPokemon()}>Opnieuw proberen</Button>
+            </main>
         );
     }
 
@@ -87,7 +97,11 @@ function Quiz() {
     const typeColor = pokemon ? getTypeColor(pokemon.types[0]) : '#6890F0';
 
     return (
-        <div className="quiz-wrapper">
+        <main className="quiz-wrapper">
+
+            {isPokemonAdded && (
+                <Popup>{formatPokemonName(pokemon.name)} toegevoegd aan je team!</Popup>
+            )}
 
             {status !== 'playing' && (
                 <div
@@ -114,7 +128,7 @@ function Quiz() {
 
             <div className="quiz-pokemon-wrapper">
                 <img
-                    key={`${pokemon.id}-${status}`}
+                    key={`${pokemon.dbId}-${status}`}
                     src={pokemon.sprite}
                     alt={status === 'playing' ? 'Wie is deze Pokémon?' : pokemon.name}
                     className={`quiz-pokemon-img ${status === 'playing' ? 'silhouette' : 'revealed'}`}
@@ -151,10 +165,15 @@ function Quiz() {
                                     {isPokemonAdded ? '✓ Toegevoegd' : '+ Aan team toevoegen'}
                                 </Button>
                             )}
-                            {teamIsFull && <span className="quiz-label-white">Team is vol!</span>}
-                            {isInTeam && <span className="quiz-label-white">✓ Al in je team</span>}
+                            {isInTeam && !isPokemonAdded && (
+                                <span className="quiz-label-white">✓ Al in je team</span>
+                            )}
 
-                            <Button variant="outline" size="sm" rounded onClick={loadNewPokemon}>
+                            {!isInTeam && teamIsFull && (
+                                <span className="quiz-label-white">Team is vol!</span>
+                            )}
+
+                            <Button variant="outline" size="sm" rounded onClick={() => loadNewPokemon()}>
                                 Volgende →
                             </Button>
                         </div>
@@ -169,14 +188,14 @@ function Quiz() {
                             ))}
                         </div>
                         <p className="quiz-wrong-guess">Jij zei: "{guess}"</p>
-                        <Button variant="outline" size="sm" rounded onClick={loadNewPokemon}>
+                        <Button variant="outline" size="sm" rounded onClick={() => loadNewPokemon()}>
                             Volgende Pokémon →
                         </Button>
                     </div>
                 )}
 
             </div>
-        </div>
+        </main>
     )
 }
 

@@ -56,8 +56,8 @@ function Pokedex() {
 
                 <p className="pokedex-subtitle">
                     {caught.length === 0
-                        ? 'Hier kan je al je gevangen Pokémon zien!'
-                        : `${caught.length} van de 151 Pokémon gevangen • ${team.length}/6 in je team`
+                        ? 'Hier kan je al je ontdekte Pokémon zien!'
+                        : `${caught.length} van de 151 Pokémon ontdekt • ${team.length}/6 in je team`
                     }
                 </p>
 
@@ -100,7 +100,7 @@ function Pokedex() {
                     <div className="pokedex-empty">
                         <LoadingSpinner />
                         <p>Je Pokédex is nog leeg.</p>
-                        <p>Raad Pokémon goed in de <Link to="/quiz">quiz</Link> om ze te vangen!</p>
+                        <p>Raad Pokémon goed in de <Link to="/quiz">quiz</Link> om ze toe te voegen aan je Pokédex!</p>
                     </div>
                 )}
 

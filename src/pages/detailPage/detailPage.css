@@ -11,7 +11,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    background: white;
+    background: var(--white);
     border-radius: 12px;
     box-shadow: var(--shadow-medium);
     padding: 2rem;
@@ -77,27 +77,23 @@
     color: var(--dark);
 }
 
-.detail-right {
+.details-right {
     flex: 1 1 280px;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 2rem;
 }
 
-.detail-stats-title {
+.detail-right-title {
     font-weight: 700;
     color: var(--dark);
-    margin-bottom: 0.5rem;
-}
-
-.detail-stats + .detail-stats-title {
-    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .detail-stats {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.5rem;
 }
 
 .stat-row {
@@ -139,7 +135,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-bottom: 0.5rem;
 }
 
 .ability-badge {
@@ -161,12 +156,12 @@
     font-size: 0.75rem;
 }
 
-.detail-team-action {
+.detail-team-btn {
     margin-top: auto;
     padding-top: 1.5rem;
 }
 
-.detail-team-action .btn {
+.detail-team-btn .btn {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
 }

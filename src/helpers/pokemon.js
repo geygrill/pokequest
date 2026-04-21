@@ -2,8 +2,7 @@ import axios from "axios";
 
 const POKE_BASE_URL = 'https://pokeapi.co/api/v2';
 const NOVI_BASE_URL = 'https://novi-backend-api-wgsgz.ondigitalocean.app';
-const PROJECT_ID = '15434519-3993-48e6-93d6-56bf22754409';
-const projectHeader = { 'novi-education-project-id': PROJECT_ID };
+const projectHeader = { 'novi-education-project-id': import.meta.env.NOVI_PROJECT_ID };
 function authHeader(token) {
     return {
         ...projectHeader,
@@ -11,8 +10,10 @@ function authHeader(token) {
     };
 }
 
-export async function getPokemon(nameOrId) {
-    const response = await axios.get(`${POKE_BASE_URL}/pokemon/${String(nameOrId).toLowerCase()}`);
+export async function getPokemon(nameOrId, signal) {
+    const response = await axios.get(`${POKE_BASE_URL}/pokemon/${String(nameOrId).toLowerCase()}`, {
+        signal,
+    });
     return response.data;
 }
 
@@ -39,8 +40,10 @@ export function formatPokemonName(name) {
         .join(' ');
 }
 
-export async function getPokemonSpecies(id) {
-    const response = await axios.get(`${POKE_BASE_URL}/pokemon-species/${id}`);
+export async function getPokemonSpecies(id, signal) {
+    const response = await axios.get(`${POKE_BASE_URL}/pokemon-species/${id}`, {
+        signal,
+    });
     return response.data;
 }
 

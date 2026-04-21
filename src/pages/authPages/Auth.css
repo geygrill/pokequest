@@ -6,7 +6,7 @@
 .auth-card {
     flex-basis: 420px;
     margin: 2rem 1.5rem;
-    background: white;
+    background: var(--white);
     border-radius: 12px;
     padding: 2.5rem;
     box-shadow: var(--shadow-large);
@@ -68,7 +68,7 @@
 
 .btn-submit {
     background: var(--red);
-    color: white;
+    color: var(--white);
     border: none;
     padding: 0.75rem;
     border-radius: 8px;

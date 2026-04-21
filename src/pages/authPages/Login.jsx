@@ -32,61 +32,60 @@ function Login() {
         } catch(error){
             console.error(error);
             toggleError(true);
+        } finally {
+            toggleLoading(false);
         }
-        toggleLoading(false);
     }
 
     return (
-        <>
-            <div className="outer-content-container auth-page">
-                <div className="auth-card">
-                    <Pokeball size="medium"/>
-                    <h1>Inloggen</h1>
+        <main className="outer-content-container auth-page">
+            <div className="auth-card">
+                <Pokeball size="medium"/>
+                <h1>Inloggen</h1>
 
-                    <form onSubmit={handleSubmit(handleFormSubmit)} noValidate className="auth-form">
-                        <div className="form-group">
-                            <div className="form-label-row">
-                                <label htmlFor="email">E-mailadres</label>
-                                {errors.email && <span className="form-error">{errors.email.message}</span>}
-                            </div>
-                            <input
-                                id="email"
-                                type="email"
-                                placeholder="jouw@email.nl"
-                                {...register('email', {
-                                    required: 'E-mailadres is verplicht',
-                                    validate: (value) =>
-                                        value.includes('@') && value.includes('.') || 'Ongeldig e-mailadres'                                })}
-                            /></div>
-
-                        <div className="form-group">
-                            <div className="form-label-row">
-                                <label htmlFor="password">Wachtwoord</label>
-                                {errors.password && <span className="form-error">{errors.password.message}</span>}
-                            </div>
-                            <input
-                                id="password"
-                                type="password"
-                                placeholder="Jouw wachtwoord"
-                                {...register('password', {
-                                    required: 'Wachtwoord is verplicht'
-                                })}
-                            />
+                <form onSubmit={handleSubmit(handleFormSubmit)} noValidate className="auth-form">
+                    <div className="form-group">
+                        <div className="form-label-row">
+                            <label htmlFor="email">E-mailadres</label>
+                            {errors.email && <span className="form-error">{errors.email.message}</span>}
                         </div>
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="jouw@email.nl"
+                            {...register('email', {
+                                required: 'E-mailadres is verplicht',
+                                validate: (value) =>
+                                    value.includes('@') && value.includes('.') || 'Ongeldig e-mailadres'})}
+                        /></div>
 
-                        {error && <ErrorMessage>Inloggen mislukt. Controleer je e-mailadres en wachtwoord.</ErrorMessage>}
+                    <div className="form-group">
+                        <div className="form-label-row">
+                            <label htmlFor="password">Wachtwoord</label>
+                            {errors.password && <span className="form-error">{errors.password.message}</span>}
+                        </div>
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Jouw wachtwoord"
+                            {...register('password', {
+                                required: 'Wachtwoord is verplicht'
+                            })}
+                        />
+                    </div>
 
-                        <Button type="submit" variant="red" fullWidth>
-                            Inloggen
-                        </Button>
-                    </form>
+                    {error && <ErrorMessage>Inloggen mislukt. Controleer je e-mailadres en wachtwoord.</ErrorMessage>}
 
-                    <p className="auth-page-switch">
-                        Nog geen account? <Link to="/register">Registreren</Link>
-                    </p>
-                </div>
+                    <Button type="submit" variant="red" fullWidth disabled={loading}>
+                        {loading ? 'Bezig...' : 'Inloggen'}
+                    </Button>
+                </form>
+
+                <p className="auth-page-switch">
+                    Nog geen account? <Link to="/register">Registreren</Link>
+                </p>
             </div>
-        </>
+        </main>
     )
 }
 

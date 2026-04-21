@@ -89,7 +89,7 @@
 
 .pokemon-card-btn.remove:hover {
     background: var(--red);
-    color: white;
+    color: var(--white);
 }
 
 .pokemon-card .btn-remove {

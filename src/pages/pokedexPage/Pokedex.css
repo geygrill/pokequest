@@ -33,7 +33,7 @@
 }
 
 .type-filter-btn {
-    background: white;
+    background: var(--white);
     color: var(--grey);
     border: 2px solid #e5e7eb;
     padding: 0.3rem 0.85rem;
@@ -52,7 +52,7 @@
 .type-filter-btn.active {
     border-color: var(--type-color, var(--red));
     background: var(--type-color, var(--red));
-    color: white;
+    color: var(--white);
 }
 
 .pokemon-grid {
@@ -67,4 +67,8 @@
     color: var(--grey);
     padding: 1rem;
     line-height: 2;
+}
+
+.pokedex-empty a {
+    font-weight: 700;
 }

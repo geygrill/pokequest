@@ -10,7 +10,7 @@ function Home() {
     return (
         <>
             <header className="header outer-content-container">
-                <div className="intro-inner-container">
+                <section className="intro-inner-container">
                     <h1>Welkom bij PokéQuest!</h1>
                     <p className="intro-text">
                         Test je Pokémon-kennis, bouw je droomteam en ontdek al je favoriete Pokémon!
@@ -29,40 +29,38 @@ function Home() {
                             </>
                         )}
                     </div>
-                </div>
+                </section>
             </header>
 
             <div className="pokeball-wrapper" aria-hidden="true">
                 <Pokeball size="large" />
             </div>
 
-            <section className="outer-content-container features-section">
+            <main className="outer-content-container features-section">
                 <div className="inner-content-container">
                     <h2 className="feature-title">Wat kun je doen?</h2>
-                    <div className="feature-cards">
-                        <div className="feature-card">
-                            <div className="feature-icon"></div>
+                    <ul className="feature-cards">
+                        <li className="feature-card">
                             <h3>Wie is deze Pokémon?!</h3>
-                            <p>Zie een silhouet en raad welke Pokémon het is. Raad je het goed? Dan vang je hem en kun je hem toevoegen aan je team!</p>
+                            <p>Zie een silhouet en raad welke Pokémon het is. Raad je het goed? Dan kun je deze toevoegen aan je team!</p>
                             <Link to="/quiz" className="feature-link">Speel nu →</Link>
-                        </div>
+                        </li>
 
-                        <div className="feature-card">
-                            <div className="feature-icon"></div>
+                        <li className="feature-card">
                             <h3>Mijn Pokédex</h3>
-                            <p>Bekijk alle Pokémon die je ooit goed hebt geraden. Filter op naam en beheer wie er in je team zit.</p>
-                            <Link to="/search" className="feature-link">Open Pokédex →</Link>
-                        </div>
+                            <p>Bekijk alle Pokémon die je ooit goed hebt geraden. Filter op naam en beheer welke pokémon er in je team zitten.</p>
+                            <Link to="/pokedex" className="feature-link">Open Pokédex →</Link>
+                        </li>
 
-                        <div className="feature-card">
-                            <div className="feature-icon"></div>
+                        <li className="feature-card">
                             <h3>Mijn Team</h3>
-                            <p>Kies je favoriete Pokémon en stel je perfecte team samen voor de ideale line-up.</p>                            <Link to="/team" className="feature-link">Mijn team →</Link>
-                        </div>
+                            <p>Kies je favoriete Pokémon en stel je perfecte team samen voor de ideale line-up.</p>
+                            <Link to="/team" className="feature-link">Mijn team →</Link>
+                        </li>
 
-                    </div>
+                    </ul>
                 </div>
-            </section>
+            </main>
         </>
     )
 }

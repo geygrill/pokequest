@@ -8,7 +8,7 @@ function Navigation() {
     const { isAuth, logout, user } = useContext(AuthContext);
 
     return (
-            <nav className="main-navigation outer-content-container">
+            <nav className="main-navigation">
                 <div className="inner-nav-container">
 
                     <Link to="/" className="navbar-logo">

@@ -1,7 +1,7 @@
 import './Quiz.css'
 import {useContext, useEffect, useState} from "react";
 import TypeBadge from "../../components/typeBadge/TypeBadge.jsx";
-import {formatPokemon, getPokemon, getTypeColor} from "../../helpers/pokemon.js";
+import {formatPokemon, formatPokemonName, getPokemon, getTypeColor} from "../../helpers/pokemon.js";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner.jsx";
 import {PokemonContext} from "../../context/PokemonContext.jsx";
 
@@ -50,7 +50,7 @@ function Quiz() {
     function handleGuess(e) {
         e.preventDefault();
         if (!guess.trim() || !pokemon) return;
-        if (normalizeName(guess) === normalizeName(pokemon.name)) {
+        if (normalizeName(guess) === normalizeName(formatPokemonName(pokemon.name))) {
             setStatus('correct');
             addToCaught(pokemon);
         } else {
@@ -101,12 +101,12 @@ function Quiz() {
                 )}
                 {status === 'correct' && (
                     <h1 className="quiz-title title-correct">
-                        Het is <span>{pokemon.name}</span>!
+                        Het is <span>{formatPokemonName(pokemon.name)}</span>!
                     </h1>
                 )}
                 {status === 'wrong' && (
                     <h1 className="quiz-title title-wrong">
-                        Het was <span>{pokemon.name}</span>...
+                        Het was <span>{formatPokemonName(pokemon.name)}</span>...
                     </h1>
                 )}
             </div>

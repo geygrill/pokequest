@@ -4,6 +4,7 @@ import TypeBadge from "../../components/typeBadge/TypeBadge.jsx";
 import Pokeball from "../../components/pokeball/Pokeball.jsx";
 import {PokemonContext} from "../../context/PokemonContext.jsx";
 import {Link} from "react-router-dom";
+import {formatPokemonName} from "../../helpers/pokemon.js";
 
 function Team() {
     const { getTeam, removeFromTeam } = useContext(PokemonContext);
@@ -33,7 +34,7 @@ function Team() {
                                         className="team-pokemon-img"
                                     />
                                     <div>
-                                        <h3>{pokemon.name}</h3>
+                                        <h3>{formatPokemonName(pokemon.name)}</h3>
                                         <div className="pokemon-types">
                                             {pokemon.types.map(type => (
                                                 <TypeBadge key={type} type={type} />

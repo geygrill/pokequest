@@ -32,6 +32,18 @@ export async function getPokemonTypes() {
         .filter(name => name !== 'unknown');
 }
 
+export function formatPokemonName(name) {
+    return name
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}
+
+export async function getPokemonSpecies(id) {
+    const response = await axios.get(`${POKE_BASE_URL}/pokemon-species/${id}`);
+    return response.data;
+}
+
 export async function getCaught(token, userId) {
     const response = await axios.get(`${NOVI_BASE_URL}/api/catches?userId=${userId}`, { headers: authHeader(token) });
     return response.data;

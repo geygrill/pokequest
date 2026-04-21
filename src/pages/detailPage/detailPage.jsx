@@ -34,7 +34,7 @@ function DetailPage() {
             if (error.name === 'CanceledError') return;
             setError(true);
         } finally {
-            if (!controller.signal.aborted) {
+            if (!controller?.signal?.aborted) {
                 setLoading(false);
             }
         }

@@ -6,7 +6,7 @@
 }
 
 .inner-content-container {
-    flex-basis: 900px;
+    flex-basis: 950px;
     flex-shrink: 1;
     flex-grow: 0;
     margin: 2rem 1.5rem 3rem;

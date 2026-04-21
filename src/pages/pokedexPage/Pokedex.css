@@ -45,14 +45,14 @@
 }
 
 .type-filter-btn:hover {
-    border-color: #d1d5db;
-    color: var(--dark);
+    border-color: var(--type-color, #d1d5db);
+    color: var(--type-color, var(--dark));
 }
 
 .type-filter-btn.active {
-    background: var(--red);
+    border-color: var(--type-color, var(--red));
+    background: var(--type-color, var(--red));
     color: white;
-    border-color: var(--red);
 }
 
 .pokemon-grid {

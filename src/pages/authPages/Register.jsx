@@ -99,8 +99,8 @@ function Register() {
 
                     {error && <ErrorMessage>Registreren mislukt.</ErrorMessage>}
 
-                    <Button type="submit" variant="red" fullWidth>
-                        Account aanmaken
+                    <Button type="submit" variant="red" fullWidth disabled={loading}>
+                        {loading ? 'Bezig...' : 'Account aanmaken'}
                     </Button>
                 </form>
 

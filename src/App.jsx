@@ -30,7 +30,7 @@ function App() {
                 <Route path="/quiz" element={ isAuth ? <Quiz/> : <Navigate to="/login"/>}/>
                 <Route path="/team" element={ isAuth ? <Team/> : <Navigate to="/login"/>}/>
 
-                <Route path="/pokemon/:id" element={<DetailPage />} />
+                <Route path="/pokemon/:id" element={ isAuth ? <DetailPage/> : <Navigate to="/login"/>}/>
             </Routes>
         </main>
 
